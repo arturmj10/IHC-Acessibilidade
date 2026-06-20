@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-i18n-title="page.title.index">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moodle UFSC - Presencial</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content" data-i18n="skip.link">Ir para o conteúdo principal</a>
+
+  <!-- Barra de acessibilidade -->
+  <div class="a11y-bar" role="toolbar" data-i18n-aria="a11y.toolbar" aria-label="Opções de acessibilidade">
+    <span class="a11y-bar__label" data-i18n="a11y.label">Acessibilidade:</span>
+    <button class="a11y-btn" id="btn-contrast" title="Alternar alto contraste">⬛ <span data-i18n="a11y.contrast">Contraste</span></button>
+    <button class="a11y-btn" id="btn-font-size" title="Aumentar tamanho da fonte">A</button>
+    <button class="a11y-btn" id="btn-libras" title="Ativar intérprete de Libras">🤟 <span data-i18n="a11y.libras">Libras</span></button>
+    <span class="a11y-bar__label" style="margin-left:var(--space-sm);" data-i18n="a11y.language">Idioma:</span>
+    <button class="a11y-btn lang-option" data-lang="pt-BR" aria-pressed="true"  title="Português (Brasil)">🇧🇷 PT</button>
+    <button class="a11y-btn lang-option" data-lang="en-US" aria-pressed="false" title="English (US)">🇺🇸 EN</button>
+    <button class="a11y-btn lang-option" data-lang="es"    aria-pressed="false" title="Español">🇪🇸 ES</button>
+  </div>
+
+  <!-- Topbar -->
+  <header class="topbar" role="banner">
+    <a class="topbar__logo-wrap" href="index.html" aria-label="Moodle UFSC">
+      <svg class="topbar__logo-img" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="120" height="40" fill="none"/>
+        <text x="4" y="28" font-family="Arial" font-size="22" font-weight="bold" fill="white">UFSC</text>
+      </svg>
+      <span class="topbar__site-name" data-i18n="site.name">Moodle UFSC - Presencial</span>
+    </a>
+    <div class="topbar__spacer"></div>
+    <nav class="topbar__actions" data-i18n-aria="nav.user.actions" aria-label="Ações do usuário">
+      <button class="topbar__icon-btn" id="btn-notifications" data-i18n-aria="nav.notifications" aria-label="Notificações (1 nova)">
+        🔔<span class="topbar__badge" aria-hidden="true">1</span>
+      </button>
+      <button class="topbar__icon-btn" id="btn-messages" data-i18n-aria="nav.messages" aria-label="Mensagens (1 nova)">
+        💬<span class="topbar__badge" aria-hidden="true">1</span>
+      </button>
+      <button class="topbar__user" id="btn-profile" data-i18n-aria="nav.profile" aria-label="Perfil de Develin Souza Goncalves">
+        <span>Develin Souza Goncalves (24102015)</span>
+        <img class="topbar__avatar" src="https://ui-avatars.com/api/?name=Develin+Souza&background=3949ab&color=fff&size=64" alt="Avatar de Develin">
+      </button>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb-bar" data-i18n-aria="nav.breadcrumb" aria-label="Localização na página">
+    <ol class="breadcrumb">
+      <li><a href="dashboard.html" data-i18n="nav.panel">Painel</a></li>
+      <li class="breadcrumb__sep" aria-hidden="true">/</li>
+      <li aria-current="page" data-i18n="nav.home">Página inicial do site</li>
+    </ol>
+  </nav>
+
+  <!-- Cabeçalho da página -->
+  <div class="page-header" role="region" aria-label="Título da página">
+    <div class="page-header__inner">
+      <h1 class="page-header__title" data-i18n="index.title">Moodle UFSC - Apoio aos Cursos Presenciais</h1>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <main id="main-content" class="page-layout--full" style="max-width:900px;">
+
+    <div style="font-size: var(--font-size-lg); line-height: 1.7; margin-bottom: var(--space-xl);">
+      <p>
+        <span data-i18n="index.legacy">O conteúdo das disciplinas e turmas do semestre</span>
+        <strong style="color: var(--color-accent);" data-i18n="index.legacy.highlight">2023/2 e anteriores</strong>
+        <span data-i18n="index.legacy.suffix">está disponível em</span>
+        <strong>legado.moodle.ufsc.br</strong>
+      </p>
+    </div>
+
+    <div role="region" aria-label="Links institucionais">
+      <ul style="display:flex; flex-direction:column; gap: var(--space-xs);">
+        <li>
+          <span class="activity-item is-static" style="border:1px solid var(--color-border-light); border-radius: var(--radius-md);">
+            <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">📋</span>
+            <span class="activity-item__name" data-i18n="index.faq">Perguntas Frequentes</span>
+          </span>
+        </li>
+        <li>
+          <span class="activity-item is-static" style="border:1px solid var(--color-border-light); border-radius: var(--radius-md);">
+            <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
+            <span class="activity-item__name" data-i18n="index.support">Suporte a Usuários</span>
+          </span>
+        </li>
+        <li>
+          <span class="activity-item is-static" style="border:1px solid var(--color-border-light); border-radius: var(--radius-md);">
+            <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
+            <span class="activity-item__name" data-i18n="index.policies">Políticas de uso</span>
+          </span>
+        </li>
+        <li>
+          <span class="activity-item is-static" style="border:1px solid var(--color-border-light); border-radius: var(--radius-md);">
+            <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
+            <span class="activity-item__name" data-i18n="index.deploy">Implantações de Moodle da UFSC</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p data-i18n="site.footer">Universidade Federal de Santa Catarina &mdash; Moodle UFSC Presencial</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

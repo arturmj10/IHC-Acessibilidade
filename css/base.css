@@ -1,0 +1,216 @@
+/* =============================================
+   BASE.CSS — Variáveis, reset e tipografia
+   Estruturado para facilitar temas alternativos:
+   alto contraste, dark mode, ajuste de fonte.
+   ============================================= */
+
+/* --- Tokens de design (tema padrão UFSC) --- */
+:root {
+  /* Cores institucionais */
+  --color-primary:       #1a237e; /* azul escuro UFSC */
+  --color-primary-hover: #283593;
+  --color-primary-light: #e8eaf6;
+  --color-accent:        #c62828; /* vermelho para destaques/alertas */
+  --color-accent-light:  #ffebee;
+
+  /* Superfícies */
+  --color-bg:            #f5f5f5;
+  --color-surface:       #ffffff;
+  --color-surface-alt:   #f9f9f9;
+  --color-border:        #d0d0d0;
+  --color-border-light:  #e8e8e8;
+
+  /* Texto */
+  --color-text:          #212121;
+  --color-text-secondary:#555555;
+  --color-text-muted:    #595959;
+  --color-text-on-primary: #ffffff;
+  --color-link:          #1a237e;
+  --color-link-hover:    #c62828;
+
+  /* Sidebar */
+  --color-sidebar-bg:    #ffffff;
+  --color-sidebar-text:  #212121;
+  --color-sidebar-hover: #e8eaf6;
+  --color-sidebar-active:#1a237e;
+
+  /* Navegação */
+  --color-nav-bg:        #1a237e;
+  --color-nav-text:      #ffffff;
+
+  /* Tipografia */
+  --font-family:         -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-size-base:      14px;
+  --font-size-sm:        12px;
+  --font-size-md:        16px;
+  --font-size-lg:        20px;
+  --font-size-xl:        24px;
+  --font-size-xxl:       30px;
+  --line-height:         1.5;
+
+  /* Espaçamento */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-xxl: 48px;
+
+  /* Bordas e sombras */
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.12);
+
+  /* Transições */
+  --transition: 0.15s ease;
+
+  /* Largura máxima do conteúdo */
+  --max-width: 1200px;
+
+  /* Largura da sidebar */
+  --sidebar-width: 240px;
+}
+
+/* --- Tema: Alto Contraste --- */
+[data-theme="high-contrast"] {
+  --color-primary:        #000000;
+  --color-primary-hover:  #222222;
+  --color-primary-light:  #ffff00;
+  --color-accent:         #ff0000;
+  --color-bg:             #ffffff;
+  --color-surface:        #ffffff;
+  --color-border:         #000000;
+  --color-text:           #000000;
+  --color-text-secondary: #000000;
+  --color-text-muted:     #333333;
+  --color-link:           #0000cc;
+  --color-link-hover:     #cc0000;
+  --color-nav-bg:         #000000;
+  --color-nav-text:       #ffff00;
+  --color-sidebar-bg:     #ffffff;
+  --color-sidebar-hover:  #ffff00;
+  --color-sidebar-active: #000000;
+}
+
+/* --- Tamanho de fonte: acessibilidade --- */
+[data-font-size="large"] {
+  --font-size-base: 18px;
+  --font-size-sm:   15px;
+  --font-size-md:   20px;
+  --font-size-lg:   24px;
+  --font-size-xl:   28px;
+}
+
+[data-font-size="xlarge"] {
+  --font-size-base: 22px;
+  --font-size-sm:   18px;
+  --font-size-md:   24px;
+  --font-size-lg:   30px;
+  --font-size-xl:   36px;
+}
+
+/* --- Modo acessibilidade: alvos maiores e links mais evidentes --- */
+[data-a11y-mode="on"] .btn {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-md);
+}
+[data-a11y-mode="on"] .a11y-btn,
+[data-a11y-mode="on"] .topbar__icon-btn,
+[data-a11y-mode="on"] .topbar__user {
+  padding: var(--space-sm) var(--space-md);
+}
+[data-a11y-mode="on"] .sidebar__nav-item,
+[data-a11y-mode="on"] .sidebar__tree-toggle,
+[data-a11y-mode="on"] .activity-item {
+  padding: var(--space-md);
+}
+[data-a11y-mode="on"] a:not(.btn):not(.topbar__logo-wrap):not(.topbar__user) {
+  text-decoration: underline;
+}
+[data-a11y-mode="on"] :focus-visible {
+  outline-width: 4px;
+}
+
+/* --- Destaque do trecho lido em voz alta --- */
+.a11y-reading {
+  outline: 3px solid var(--color-primary) !important;
+  outline-offset: 2px;
+  background: var(--color-primary-light) !important;
+  border-radius: var(--radius-sm);
+}
+
+/* --- Botão "Modo acessibilidade" em destaque --- */
+.a11y-btn--mode {
+  font-weight: 700;
+}
+
+/* --- Reset moderno --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+/* Foco visível para navegação por teclado */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+/* Skip link para acessibilidade */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  background: var(--color-accent);
+  color: #fff;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  z-index: 9999;
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: var(--space-md);
+}

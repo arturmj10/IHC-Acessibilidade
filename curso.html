@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-i18n-title="page.title.course">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interface Humano-Computador - Moodle UFSC</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content" data-i18n="skip.link">Ir para o conteúdo principal</a>
+
+  <!-- Barra de acessibilidade -->
+  <div class="a11y-bar" role="toolbar" data-i18n-aria="a11y.toolbar" aria-label="Opções de acessibilidade">
+    <span class="a11y-bar__label" data-i18n="a11y.label">Acessibilidade:</span>
+    <button class="a11y-btn" id="btn-contrast" title="Alternar alto contraste">⬛ <span data-i18n="a11y.contrast">Contraste</span></button>
+    <button class="a11y-btn" id="btn-font-size" title="Aumentar tamanho da fonte">A</button>
+    <button class="a11y-btn" id="btn-libras" title="Ativar intérprete de Libras">🤟 <span data-i18n="a11y.libras">Libras</span></button>
+    <span class="a11y-bar__label" style="margin-left:var(--space-sm);" data-i18n="a11y.language">Idioma:</span>
+    <button class="a11y-btn lang-option" data-lang="pt-BR" aria-pressed="true"  title="Português (Brasil)">🇧🇷 PT</button>
+    <button class="a11y-btn lang-option" data-lang="en-US" aria-pressed="false" title="English (US)">🇺🇸 EN</button>
+    <button class="a11y-btn lang-option" data-lang="es"    aria-pressed="false" title="Español">🇪🇸 ES</button>
+  </div>
+
+  <!-- Topbar -->
+  <header class="topbar" role="banner">
+    <a class="topbar__logo-wrap" href="index.html" aria-label="Moodle UFSC">
+      <svg class="topbar__logo-img" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="4" y="28" font-family="Arial" font-size="22" font-weight="bold" fill="white">UFSC</text>
+      </svg>
+      <span class="topbar__site-name" data-i18n="site.name">Moodle UFSC - Presencial</span>
+    </a>
+    <div class="topbar__spacer"></div>
+    <nav class="topbar__actions" data-i18n-aria="nav.user.actions" aria-label="Ações do usuário">
+      <button class="topbar__icon-btn" id="btn-notifications" data-i18n-aria="nav.notifications" aria-label="Notificações (1 nova)">
+        🔔<span class="topbar__badge" aria-hidden="true">1</span>
+      </button>
+      <button class="topbar__icon-btn" id="btn-messages" data-i18n-aria="nav.messages" aria-label="Mensagens (1 nova)">
+        💬<span class="topbar__badge" aria-hidden="true">1</span>
+      </button>
+      <button class="topbar__user" id="btn-profile" data-i18n-aria="nav.profile" aria-label="Perfil">
+        <span>Develin Souza Goncalves (24102015)</span>
+        <img class="topbar__avatar" src="https://ui-avatars.com/api/?name=Develin+Souza&background=3949ab&color=fff&size=64" alt="Avatar de Develin">
+      </button>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb-bar" data-i18n-aria="nav.breadcrumb" aria-label="Localização na página">
+    <ol class="breadcrumb">
+      <li><a href="dashboard.html" data-i18n="nav.panel">Painel</a></li>
+      <li class="breadcrumb__sep" aria-hidden="true">/</li>
+      <li><a href="#" data-i18n="nav.courses">Cursos</a></li>
+      <li class="breadcrumb__sep" aria-hidden="true">/</li>
+      <li aria-current="page">CIT7213-05652 (20261)</li>
+    </ol>
+  </nav>
+
+  <!-- Cabeçalho -->
+  <div class="page-header" role="region" aria-label="Título do curso">
+    <div class="page-header__inner">
+      <h1 class="page-header__title" data-i18n="course.title">CIT7213-05652 (20261) - Interface Humano-Computador</h1>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
+      <nav class="sidebar__nav">
+        <a href="dashboard.html" class="sidebar__nav-item">🏠 <span data-i18n="nav.panel">Painel</span></a>
+
+        <button class="sidebar__tree-toggle open" data-target="tree-course" aria-expanded="true">
+          <span>📘 <span data-i18n="course.title">Interface Humano-Computador</span></span>
+          <span class="arrow" aria-hidden="true">▶</span>
+        </button>
+        <div class="sidebar__subtree open" id="tree-course">
+          <a href="curso.html" class="sidebar__nav-item sidebar__nav-item--active" data-i18n="course.sidebar.home">Página inicial</a>
+          <span class="sidebar__nav-item is-static" data-i18n="nav.participants">Participantes</span>
+          <span class="sidebar__nav-item is-static" data-i18n="nav.grades">Notas</span>
+          <span class="sidebar__nav-item is-static" data-i18n="nav.reports">Relatórios</span>
+
+          <div class="sidebar__section-title" data-i18n="nav.content">Conteúdo</div>
+          <a href="conteudo.html" class="sidebar__nav-item" data-i18n="course.section.lesson1">Aula 1 - Introdução à IHC</a>
+          <span class="sidebar__nav-item is-static" data-i18n="course.section.lesson2">Aula 2 - Heurísticas de Nielsen</span>
+          <span class="sidebar__nav-item is-static" data-i18n="course.section.lesson3">Aula 3 - Avaliação de Usabilidade</span>
+
+          <div class="sidebar__section-title" data-i18n="nav.activities">Atividades</div>
+          <a href="atividade.html" class="sidebar__nav-item" data-i18n="course.item.work1">Trabalho 1 - Redesign</a>
+          <span class="sidebar__nav-item is-static" data-i18n="nav.forum">Fórum de Dúvidas</span>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main id="main-content" class="main-content">
+
+      <!-- Mensagem de boas-vindas -->
+      <div class="course-intro" role="region" aria-label="Mensagem do professor">
+        <p data-i18n="course.welcome.hello">Olá!</p>
+        <br>
+        <p>
+          <span data-i18n="course.welcome.intro">Sejam bem-vindos(as) à disciplina de</span>
+          <strong> <span data-i18n="course.welcome.name">Interface Humano-Computador</span></strong><span data-i18n="course.welcome.pleasure">. Será um prazer acompanhá-los(as) ao longo deste percurso de aprendizagem!</span>
+        </p>
+        <br>
+        <p><span data-i18n="course.welcome.schedule">Nossas aulas são todas as</span> <strong data-i18n="course.welcome.schedule.detail">terças-feiras - 18h30min sala 116A</strong></p>
+        <br>
+        <p>📌 <strong data-i18n="course.welcome.office">Horários de atendimento aos alunos:</strong></p>
+        <ul style="list-style:disc; padding-left:var(--space-xl); margin-top:var(--space-sm);">
+          <li data-i18n="course.welcome.office.time">Quartas-feiras: das 18h às 20h</li>
+          <li data-i18n="course.welcome.office.location">Local - Bloco INE - sala 518</li>
+        </ul>
+        <br>
+        <p>🔵 <strong data-i18n="course.welcome.contact">Contato:</strong> <a href="mailto:prof.ihc@ufsc.br">prof.ihc@ufsc.br</a></p>
+        <br>
+        <p data-i18n="course.welcome.regards">Bons estudos!</p>
+        <br>
+        <p><strong>Prof. IHC - UFSC</strong></p>
+      </div>
+
+      <!-- Avisos -->
+      <div class="activity-list" role="region" data-i18n-aria="course.section.notices">
+        <div class="activity-list__section-header">📢 <span data-i18n="course.section.notices">Avisos</span></div>
+        <span class="activity-item is-static">
+          <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">💬</span>
+          <span class="activity-item__name" data-i18n="course.item.notices">Avisos</span>
+        </span>
+      </div>
+
+      <!-- Aula 1 -->
+      <div class="activity-list" role="region" data-i18n-aria="course.section.lesson1">
+        <div class="activity-list__section-header">📖 <span data-i18n="course.section.lesson1">Aula 1 - Introdução à IHC</span></div>
+        <a href="conteudo.html" class="activity-item">
+          <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
+          <span class="activity-item__name" data-i18n="course.item.slides1">Slides - Introdução à Interface Humano-Computador</span>
+          <span class="activity-item__meta">PDF</span>
+        </a>
+        <a href="conteudo.html" class="activity-item">
+          <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
+          <span class="activity-item__name" data-i18n="course.item.reading1">Leitura complementar - O que é IHC?</span>
+        </a>
+      </div>
+
+      <!-- Aula 2 -->
+      <div class="activity-list" role="region" data-i18n-aria="course.section.lesson2">
+        <div class="activity-list__section-header">📖 <span data-i18n="course.section.lesson2">Aula 2 - Heurísticas de Nielsen</span></div>
+        <a href="conteudo.html" class="activity-item">
+          <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
+          <span class="activity-item__name" data-i18n="course.item.slides2">Slides - As 10 Heurísticas de Nielsen</span>
+          <span class="activity-item__meta">PDF</span>
+        </a>
+        <a href="conteudo.html" class="activity-item">
+          <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
+          <span class="activity-item__name" data-i18n="course.item.article2">Artigo: Nielsen, J. (1994) - Usability Inspection Methods</span>
+        </a>
+        <a href="atividade.html" class="activity-item">
+          <span class="activity-item__icon activity-item__icon--assign" aria-hidden="true">📝</span>
+          <span class="activity-item__name" data-i18n="course.item.work1">Trabalho 1 - Redesign de Interface com base nas Heurísticas</span>
+          <span class="badge badge--pending" style="margin-left:auto;" data-i18n="badge.pending">Pendente</span>
+        </a>
+      </div>
+
+      <!-- Aula 3 -->
+      <div class="activity-list" role="region" data-i18n-aria="course.section.lesson3">
+        <div class="activity-list__section-header">📖 <span data-i18n="course.section.lesson3">Aula 3 - Avaliação de Usabilidade</span></div>
+        <span class="activity-item is-static">
+          <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
+          <span class="activity-item__name" data-i18n="course.item.slides3">Slides - Métodos de Avaliação de Usabilidade</span>
+          <span class="activity-item__meta">PDF</span>
+        </span>
+        <span class="activity-item is-static">
+          <span class="activity-item__icon activity-item__icon--quiz" aria-hidden="true">❓</span>
+          <span class="activity-item__name" data-i18n="course.item.quiz3">Quiz - Avaliação de Usabilidade</span>
+          <span class="badge badge--new" style="margin-left:auto;" data-i18n="badge.new">Novo</span>
+        </span>
+      </div>
+
+      <!-- Fórum -->
+      <div class="activity-list" role="region" data-i18n-aria="course.section.comms">
+        <div class="activity-list__section-header">💬 <span data-i18n="course.section.comms">Comunicação</span></div>
+        <span class="activity-item is-static">
+          <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">💬</span>
+          <span class="activity-item__name" data-i18n="course.item.forum">Fórum de Dúvidas</span>
+        </span>
+      </div>
+
+    </main>
+
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <p data-i18n="site.footer">Universidade Federal de Santa Catarina &mdash; Moodle UFSC Presencial</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>
