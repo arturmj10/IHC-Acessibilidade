@@ -272,6 +272,13 @@ const A11y = (() => {
   const TTS_OK = ('speechSynthesis' in window);
   let readAloudOn = false;
   let lastSpoken  = null;
+  const warnedNoVoice = new Set();
+
+  if (TTS_OK) {
+    // Algumas engines carregam as vozes de forma assíncrona
+    speechSynthesis.getVoices();
+    speechSynthesis.addEventListener('voiceschanged', () => speechSynthesis.getVoices());
+  }
 
   // Elementos "lê­veis" — evita ler contêineres gigantes
   const READABLE = 'a, button, h1, h2, h3, h4, h5, li, p, label, th, td, summary,' +
@@ -285,19 +292,33 @@ const A11y = (() => {
   function pickVoice(lang) {
     if (!TTS_OK) return null;
     const vs = speechSynthesis.getVoices();
-    const exact = vs.find(v => v.lang.toLowerCase() === lang.toLowerCase());
-    if (exact) return exact;
-    const base = lang.split('-')[0].toLowerCase();
-    return vs.find(v => v.lang.toLowerCase().indexOf(base) === 0) || null;
+    const want = lang.toLowerCase().replace('_', '-');
+    const base = want.split('-')[0];
+    return vs.find(v => v.lang.toLowerCase().replace('_', '-') === want)
+        || vs.find(v => v.lang.toLowerCase().replace('_', '-').split('-')[0] === base)
+        || null;
+  }
+
+  function notifyNoVoice(lang) {
+    const base = lang.split('-')[0];
+    if (warnedNoVoice.has(base)) return;
+    warnedNoVoice.add(base);
+    highlight(null);
+    showToast(I18n.t('a11y.toast.novoice'), 'info');
   }
 
   function speak(text) {
     if (!TTS_OK || !text) return;
+    const lang  = ttsLang();
+    const vs    = speechSynthesis.getVoices();
+    const voice = pickVoice(lang);
+    // Vozes já carregadas e nenhuma corresponde ao idioma:
+    // não ler com voz de outro idioma (pronúncia incorreta)
+    if (vs.length && !voice) { notifyNoVoice(lang); return; }
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = ttsLang();
-    const v = pickVoice(u.lang);
-    if (v) u.voice = v;
+    u.lang = voice ? voice.lang : lang;
+    if (voice) u.voice = voice;
     u.rate = 1;
     speechSynthesis.speak(u);
   }
