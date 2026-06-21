@@ -34,6 +34,7 @@
     </a>
     <div class="topbar__spacer"></div>
     <nav class="topbar__actions" data-i18n-aria="nav.user.actions" aria-label="Ações do usuário">
+      <a href="dashboard.html" class="topbar__nav-link" data-i18n="nav.panel">Painel</a>
       <button class="topbar__icon-btn" id="btn-notifications" data-i18n-aria="nav.notifications" aria-label="Notificações (1 nova)">
         🔔<span class="topbar__badge" aria-hidden="true">1</span>
       </button>
@@ -49,145 +50,204 @@
 
   <!-- Breadcrumb -->
   <nav class="breadcrumb-bar" data-i18n-aria="nav.breadcrumb" aria-label="Localização na página">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb breadcrumb--full">
       <li><a href="dashboard.html" data-i18n="nav.panel">Painel</a></li>
       <li class="breadcrumb__sep" aria-hidden="true">/</li>
-      <li><a href="#" data-i18n="nav.courses">Cursos</a></li>
+      <li><a href="dashboard.html" data-i18n="nav.mycourses">Meus cursos</a></li>
       <li class="breadcrumb__sep" aria-hidden="true">/</li>
       <li aria-current="page">CIT7213-05652 (20261)</li>
     </ol>
   </nav>
 
-  <!-- Cabeçalho -->
-  <div class="page-header" role="region" aria-label="Título do curso">
-    <div class="page-header__inner">
-      <h1 class="page-header__title" data-i18n="course.title">CIT7213-05652 (20261) - Interface Humano-Computador</h1>
-    </div>
-  </div>
-
-  <div class="page-body">
+  <div class="page-body page-body--full">
 
     <!-- Sidebar -->
     <aside class="sidebar" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
       <nav class="sidebar__nav">
         <a href="dashboard.html" class="sidebar__nav-item">🏠 <span data-i18n="nav.panel">Painel</span></a>
+        <a href="index.html" class="sidebar__nav-item">📋 <span data-i18n="index.courses.title">Minhas disciplinas</span></a>
+
+        <div class="sidebar__section-title" data-i18n="course.sidebar.current">Disciplina atual</div>
 
         <button class="sidebar__tree-toggle open" data-target="tree-course" aria-expanded="true">
-          <span>📘 <span data-i18n="course.title">Interface Humano-Computador</span></span>
+          <span>📘 <span data-i18n="course.welcome.name">Interface Humano-Computador</span></span>
           <span class="arrow" aria-hidden="true">▶</span>
         </button>
         <div class="sidebar__subtree open" id="tree-course">
           <a href="curso.html" class="sidebar__nav-item sidebar__nav-item--active" data-i18n="course.sidebar.home">Página inicial</a>
+          <a href="#sec-conteudo" class="sidebar__nav-item" data-i18n="nav.content">Conteúdo</a>
+          <a href="#sec-atividades" class="sidebar__nav-item" data-i18n="nav.activities">Atividades</a>
+          <a href="#sec-comunicacao" class="sidebar__nav-item" data-i18n="course.section.comms">Comunicação</a>
           <span class="sidebar__nav-item is-static" data-i18n="nav.participants">Participantes</span>
           <span class="sidebar__nav-item is-static" data-i18n="nav.grades">Notas</span>
-          <span class="sidebar__nav-item is-static" data-i18n="nav.reports">Relatórios</span>
-
-          <div class="sidebar__section-title" data-i18n="nav.content">Conteúdo</div>
-          <a href="conteudo.html" class="sidebar__nav-item" data-i18n="course.section.lesson1">Aula 1 - Introdução à IHC</a>
-          <span class="sidebar__nav-item is-static" data-i18n="course.section.lesson2">Aula 2 - Heurísticas de Nielsen</span>
-          <span class="sidebar__nav-item is-static" data-i18n="course.section.lesson3">Aula 3 - Avaliação de Usabilidade</span>
-
-          <div class="sidebar__section-title" data-i18n="nav.activities">Atividades</div>
-          <a href="atividade.html" class="sidebar__nav-item" data-i18n="course.item.work1">Trabalho 1 - Redesign</a>
-          <span class="sidebar__nav-item is-static" data-i18n="nav.forum">Fórum de Dúvidas</span>
         </div>
       </nav>
     </aside>
 
-    <!-- Conteúdo principal -->
-    <main id="main-content" class="main-content">
+    <!-- Área principal do curso (largura total) -->
+    <div class="course-main">
 
-      <!-- Mensagem de boas-vindas -->
-      <div class="course-intro" role="region" aria-label="Mensagem do professor">
-        <p data-i18n="course.welcome.hello">Olá!</p>
-        <br>
-        <p>
-          <span data-i18n="course.welcome.intro">Sejam bem-vindos(as) à disciplina de</span>
-          <strong> <span data-i18n="course.welcome.name">Interface Humano-Computador</span></strong><span data-i18n="course.welcome.pleasure">. Será um prazer acompanhá-los(as) ao longo deste percurso de aprendizagem!</span>
-        </p>
-        <br>
-        <p><span data-i18n="course.welcome.schedule">Nossas aulas são todas as</span> <strong data-i18n="course.welcome.schedule.detail">terças-feiras - 18h30min sala 116A</strong></p>
-        <br>
-        <p>📌 <strong data-i18n="course.welcome.office">Horários de atendimento aos alunos:</strong></p>
-        <ul style="list-style:disc; padding-left:var(--space-xl); margin-top:var(--space-sm);">
-          <li data-i18n="course.welcome.office.time">Quartas-feiras: das 18h às 20h</li>
-          <li data-i18n="course.welcome.office.location">Local - Bloco INE - sala 518</li>
-        </ul>
-        <br>
-        <p>🔵 <strong data-i18n="course.welcome.contact">Contato:</strong> <a href="mailto:prof.ihc@ufsc.br">prof.ihc@ufsc.br</a></p>
-        <br>
-        <p data-i18n="course.welcome.regards">Bons estudos!</p>
-        <br>
-        <p><strong>Prof. IHC - UFSC</strong></p>
-      </div>
+      <header class="course-header">
+        <h1 class="course-header__title" data-i18n="course.title">CIT7213-05652 (20261) - Interface Humano-Computador</h1>
+      </header>
 
-      <!-- Avisos -->
-      <div class="activity-list" role="region" data-i18n-aria="course.section.notices">
-        <div class="activity-list__section-header">📢 <span data-i18n="course.section.notices">Avisos</span></div>
-        <span class="activity-item is-static">
-          <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">💬</span>
-          <span class="activity-item__name" data-i18n="course.item.notices">Avisos</span>
-        </span>
-      </div>
+      <nav class="course-subnav" data-i18n-aria="course.subnav" aria-label="Seções do curso">
+        <a href="#sec-inicio"      class="course-subnav__link is-active" data-i18n="course.subnav.home">Início</a>
+        <a href="#sec-conteudo"    class="course-subnav__link" data-i18n="nav.content">Conteúdo</a>
+        <a href="#sec-atividades"  class="course-subnav__link" data-i18n="nav.activities">Atividades</a>
+        <a href="#sec-comunicacao" class="course-subnav__link" data-i18n="course.section.comms">Comunicação</a>
+      </nav>
 
-      <!-- Aula 1 -->
-      <div class="activity-list" role="region" data-i18n-aria="course.section.lesson1">
-        <div class="activity-list__section-header">📖 <span data-i18n="course.section.lesson1">Aula 1 - Introdução à IHC</span></div>
-        <a href="conteudo.html" class="activity-item">
-          <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
-          <span class="activity-item__name" data-i18n="course.item.slides1">Slides - Introdução à Interface Humano-Computador</span>
-          <span class="activity-item__meta">PDF</span>
-        </a>
-        <a href="conteudo.html" class="activity-item">
-          <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
-          <span class="activity-item__name" data-i18n="course.item.reading1">Leitura complementar - O que é IHC?</span>
-        </a>
-      </div>
+      <main id="main-content" class="main-content main-content--course">
 
-      <!-- Aula 2 -->
-      <div class="activity-list" role="region" data-i18n-aria="course.section.lesson2">
-        <div class="activity-list__section-header">📖 <span data-i18n="course.section.lesson2">Aula 2 - Heurísticas de Nielsen</span></div>
-        <a href="conteudo.html" class="activity-item">
-          <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
-          <span class="activity-item__name" data-i18n="course.item.slides2">Slides - As 10 Heurísticas de Nielsen</span>
-          <span class="activity-item__meta">PDF</span>
-        </a>
-        <a href="conteudo.html" class="activity-item">
-          <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
-          <span class="activity-item__name" data-i18n="course.item.article2">Artigo: Nielsen, J. (1994) - Usability Inspection Methods</span>
-        </a>
-        <a href="atividade.html" class="activity-item">
-          <span class="activity-item__icon activity-item__icon--assign" aria-hidden="true">📝</span>
-          <span class="activity-item__name" data-i18n="course.item.work1">Trabalho 1 - Redesign de Interface com base nas Heurísticas</span>
-          <span class="badge badge--pending" style="margin-left:auto;" data-i18n="badge.pending">Pendente</span>
-        </a>
-      </div>
+        <!-- INÍCIO -->
+        <section id="sec-inicio" class="course-section" aria-labelledby="sec-inicio-title">
+          <h2 id="sec-inicio-title" class="sr-only" data-i18n="course.subnav.home">Início</h2>
 
-      <!-- Aula 3 -->
-      <div class="activity-list" role="region" data-i18n-aria="course.section.lesson3">
-        <div class="activity-list__section-header">📖 <span data-i18n="course.section.lesson3">Aula 3 - Avaliação de Usabilidade</span></div>
-        <span class="activity-item is-static">
-          <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
-          <span class="activity-item__name" data-i18n="course.item.slides3">Slides - Métodos de Avaliação de Usabilidade</span>
-          <span class="activity-item__meta">PDF</span>
-        </span>
-        <span class="activity-item is-static">
-          <span class="activity-item__icon activity-item__icon--quiz" aria-hidden="true">❓</span>
-          <span class="activity-item__name" data-i18n="course.item.quiz3">Quiz - Avaliação de Usabilidade</span>
-          <span class="badge badge--new" style="margin-left:auto;" data-i18n="badge.new">Novo</span>
-        </span>
-      </div>
+          <details class="course-welcome" open>
+            <summary class="course-welcome__summary" data-i18n="course.welcome.summary">Mensagem do professor</summary>
+            <div class="course-welcome__body">
+              <p data-i18n="course.welcome.hello">Olá!</p>
+              <p>
+                <span data-i18n="course.welcome.intro">Sejam bem-vindos(as) à disciplina de</span>
+                <strong><span data-i18n="course.welcome.name">Interface Humano-Computador</span></strong><span data-i18n="course.welcome.pleasure">. Será um prazer acompanhá-los(as) ao longo deste percurso de aprendizagem!</span>
+              </p>
+              <p><span data-i18n="course.welcome.schedule">Nossas aulas são todas as</span> <strong data-i18n="course.welcome.schedule.detail">terças-feiras - 18h30min sala 116A</strong></p>
+              <p><strong data-i18n="course.welcome.office">Horários de atendimento aos alunos:</strong></p>
+              <ul>
+                <li data-i18n="course.welcome.office.time">Quartas-feiras: das 18h às 20h</li>
+                <li data-i18n="course.welcome.office.location">Local - Bloco INE - sala 518</li>
+              </ul>
+              <p><strong data-i18n="course.welcome.contact">Contato:</strong> <a href="mailto:prof.ihc@ufsc.br">prof.ihc@ufsc.br</a></p>
+              <p data-i18n="course.welcome.regards">Bons estudos!</p>
+              <p><strong>Prof. IHC - UFSC</strong></p>
+            </div>
+          </details>
 
-      <!-- Fórum -->
-      <div class="activity-list" role="region" data-i18n-aria="course.section.comms">
-        <div class="activity-list__section-header">💬 <span data-i18n="course.section.comms">Comunicação</span></div>
-        <span class="activity-item is-static">
-          <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">💬</span>
-          <span class="activity-item__name" data-i18n="course.item.forum">Fórum de Dúvidas</span>
-        </span>
-      </div>
+          <div class="course-notices">
+            <h3 class="course-notices__title">📢 <span data-i18n="course.section.notices">Avisos</span></h3>
+            <span class="activity-item is-static course-notices__item">
+              <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">💬</span>
+              <span class="activity-item__name" data-i18n="course.item.notices">Avisos</span>
+            </span>
+          </div>
+        </section>
 
-    </main>
+        <!-- CONTEÚDO -->
+        <section id="sec-conteudo" class="course-section" aria-labelledby="sec-conteudo-title">
+          <h2 id="sec-conteudo-title" class="course-section__title">
+            <span aria-hidden="true">📖</span>
+            <span data-i18n="nav.content">Conteúdo</span>
+            <span class="course-section__badge">3 <span data-i18n="course.topics.count">aulas</span></span>
+          </h2>
+
+          <div class="course-topics">
+
+            <article class="course-topic" aria-labelledby="topic-lesson1">
+              <h3 id="topic-lesson1" class="course-topic__title" data-i18n="course.section.lesson1">Aula 1 — Introdução à IHC</h3>
+              <ul class="course-topic__list">
+                <li>
+                  <a href="conteudo.html" class="activity-item">
+                    <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
+                    <span class="activity-item__name" data-i18n="course.item.slides1">Slides - Introdução à Interface Humano-Computador</span>
+                    <span class="activity-item__meta">PDF</span>
+                    <span class="activity-item__chevron" aria-hidden="true">→</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="conteudo.html" class="activity-item">
+                    <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
+                    <span class="activity-item__name" data-i18n="course.item.reading1">Leitura complementar - O que é IHC?</span>
+                    <span class="activity-item__chevron" aria-hidden="true">→</span>
+                  </a>
+                </li>
+              </ul>
+            </article>
+
+            <article class="course-topic" aria-labelledby="topic-lesson2">
+              <h3 id="topic-lesson2" class="course-topic__title" data-i18n="course.section.lesson2">Aula 2 — Heurísticas de Nielsen</h3>
+              <ul class="course-topic__list">
+                <li>
+                  <a href="conteudo.html" class="activity-item">
+                    <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
+                    <span class="activity-item__name" data-i18n="course.item.slides2">Slides - As 10 Heurísticas de Nielsen</span>
+                    <span class="activity-item__meta">PDF</span>
+                    <span class="activity-item__chevron" aria-hidden="true">→</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="conteudo.html" class="activity-item">
+                    <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
+                    <span class="activity-item__name" data-i18n="course.item.article2">Artigo: Nielsen, J. (1994) - Usability Inspection Methods</span>
+                    <span class="activity-item__chevron" aria-hidden="true">→</span>
+                  </a>
+                </li>
+              </ul>
+            </article>
+
+            <article class="course-topic" aria-labelledby="topic-lesson3">
+              <h3 id="topic-lesson3" class="course-topic__title" data-i18n="course.section.lesson3">Aula 3 — Avaliação de Usabilidade</h3>
+              <ul class="course-topic__list">
+                <li>
+                  <span class="activity-item is-static">
+                    <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
+                    <span class="activity-item__name" data-i18n="course.item.slides3">Slides - Métodos de Avaliação de Usabilidade</span>
+                    <span class="activity-item__meta">PDF</span>
+                    <span class="badge badge--new" data-i18n="badge.soon">Em breve</span>
+                  </span>
+                </li>
+              </ul>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ATIVIDADES -->
+        <section id="sec-atividades" class="course-section" aria-labelledby="sec-atividades-title">
+          <h2 id="sec-atividades-title" class="course-section__title">
+            <span aria-hidden="true">📝</span>
+            <span data-i18n="nav.activities">Atividades</span>
+            <span class="course-section__badge">2</span>
+          </h2>
+
+          <ul class="course-topic__list course-topic__list--standalone">
+            <li>
+              <a href="atividade.html" class="activity-item">
+                <span class="activity-item__icon activity-item__icon--assign" aria-hidden="true">📝</span>
+                <span class="activity-item__name" data-i18n="course.item.work1">Trabalho 1 - Redesign de Interface com base nas Heurísticas</span>
+                <span class="badge badge--pending" data-i18n="badge.pending">Pendente</span>
+                <span class="activity-item__chevron" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <span class="activity-item is-static">
+                <span class="activity-item__icon activity-item__icon--quiz" aria-hidden="true">❓</span>
+                <span class="activity-item__name" data-i18n="course.item.quiz3">Quiz - Avaliação de Usabilidade</span>
+                <span class="badge badge--new" data-i18n="badge.new">Novo</span>
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- COMUNICAÇÃO -->
+        <section id="sec-comunicacao" class="course-section" aria-labelledby="sec-comunicacao-title">
+          <h2 id="sec-comunicacao-title" class="course-section__title">
+            <span aria-hidden="true">💬</span>
+            <span data-i18n="course.section.comms">Comunicação</span>
+          </h2>
+
+          <ul class="course-topic__list course-topic__list--standalone">
+            <li>
+              <span class="activity-item is-static">
+                <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">💬</span>
+                <span class="activity-item__name" data-i18n="course.item.forum">Fórum de Dúvidas</span>
+              </span>
+            </li>
+          </ul>
+        </section>
+
+      </main>
+    </div>
 
   </div>
 

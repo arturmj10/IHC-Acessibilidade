@@ -13,11 +13,17 @@ const A11y = (() => {
     root.setAttribute('data-theme', isOn ? '' : 'high-contrast');
     localStorage.setItem('a11y-contrast', isOn ? '' : 'high-contrast');
     updateBtn('btn-contrast', !isOn);
+    const btn = document.getElementById('btn-contrast');
+    if (btn) btn.setAttribute('aria-pressed', String(!isOn));
+    if (!isOn) showToast(I18n.t('a11y.toast.contrast.on'), 'info');
+    else showToast(I18n.t('a11y.toast.contrast.off'), '');
   }
 
   // ─── Tamanho de fonte ────────────────────────────────────────────────────────
 
   const fontSizes = ['normal', 'large', 'xlarge'];
+  const fontLabels = { normal: 'A', large: 'A+', xlarge: 'A++' };
+
   function cycleFontSize() {
     const root = document.documentElement;
     const current = root.getAttribute('data-font-size') || 'normal';
@@ -25,7 +31,11 @@ const A11y = (() => {
     root.setAttribute('data-font-size', next);
     localStorage.setItem('a11y-font-size', next);
     const btn = document.getElementById('btn-font-size');
-    if (btn) btn.textContent = { normal: 'A', large: 'A+', xlarge: 'A++' }[next];
+    if (btn) {
+      btn.textContent = fontLabels[next];
+      btn.setAttribute('aria-pressed', next !== 'normal' ? 'true' : 'false');
+      btn.setAttribute('aria-label', I18n.t('a11y.fontsize') + ': ' + next);
+    }
   }
 
   // ─── Língua de Sinais ────────────────────────────────────────────────────────
@@ -406,12 +416,53 @@ const A11y = (() => {
     setA11yMode(!a11yModeOn, false);
   }
 
-  // ─── Injeção dos botões na barra de acessibilidade ───────────────────────────
+  // ─── Injeção e agrupamento da barra de acessibilidade ───────────────────────
+
+  function makeGroup(labelKey) {
+    const group = document.createElement('div');
+    group.className = 'a11y-bar__group';
+    group.setAttribute('role', 'group');
+    if (labelKey) {
+      const lbl = document.createElement('span');
+      lbl.className = 'a11y-bar__label';
+      lbl.setAttribute('data-i18n', labelKey);
+      lbl.textContent = I18n.t(labelKey);
+      group.appendChild(lbl);
+    }
+    return group;
+  }
+
+  function organizeA11yBar() {
+    const bar = document.querySelector('.a11y-bar');
+    if (!bar || bar.dataset.organized) return;
+
+    const contrast  = document.getElementById('btn-contrast');
+    const fontSize  = document.getElementById('btn-font-size');
+    const libras    = document.getElementById('btn-libras');
+    const mode      = document.getElementById('btn-a11y-mode');
+    const readAloud = document.getElementById('btn-read-aloud');
+    const langBtns  = bar.querySelectorAll('.lang-option');
+
+    const toolsGroup = makeGroup('a11y.label');
+    [mode, readAloud, contrast, fontSize, libras].forEach(btn => {
+      if (btn) toolsGroup.appendChild(btn);
+    });
+
+    const langGroup = makeGroup('a11y.language');
+    langBtns.forEach(btn => langGroup.appendChild(btn));
+
+    bar.innerHTML = '';
+    bar.appendChild(toolsGroup);
+    bar.appendChild(langGroup);
+    bar.dataset.organized = '1';
+  }
 
   function injectA11yButtons() {
     const bar = document.querySelector('.a11y-bar');
-    if (!bar || document.getElementById('btn-a11y-mode')) return;
-    const label = bar.querySelector('.a11y-bar__label');
+    if (!bar || document.getElementById('btn-a11y-mode')) {
+      organizeA11yBar();
+      return;
+    }
 
     const mode = document.createElement('button');
     mode.className = 'a11y-btn a11y-btn--mode';
@@ -421,9 +472,7 @@ const A11y = (() => {
     mode.querySelector('span').textContent = I18n.t('a11y.mode');
     mode.title = I18n.t('a11y.mode');
     mode.addEventListener('click', toggleA11yMode);
-
-    const anchor = label ? label.nextSibling : bar.firstChild;
-    bar.insertBefore(mode, anchor);
+    bar.insertBefore(mode, bar.firstChild);
 
     if (TTS_OK) {
       const read = document.createElement('button');
@@ -436,6 +485,25 @@ const A11y = (() => {
       read.addEventListener('click', toggleReadAloud);
       bar.insertBefore(read, mode.nextSibling);
     }
+
+    organizeA11yBar();
+  }
+
+  function setupA11yButtonStates() {
+    const contrast = document.getElementById('btn-contrast');
+    if (contrast) {
+      contrast.setAttribute('aria-pressed',
+        document.documentElement.getAttribute('data-theme') === 'high-contrast' ? 'true' : 'false');
+    }
+    const fontBtn = document.getElementById('btn-font-size');
+    if (fontBtn) {
+      const size = document.documentElement.getAttribute('data-font-size') || 'normal';
+      fontBtn.setAttribute('aria-pressed', size !== 'normal' ? 'true' : 'false');
+      fontBtn.setAttribute('aria-label', I18n.t('a11y.fontsize'));
+      fontBtn.title = I18n.t('a11y.fontsize');
+    }
+    const libras = document.getElementById('btn-libras');
+    if (libras) libras.setAttribute('aria-pressed', 'false');
   }
 
   function restoreA11yExtras() {
@@ -450,7 +518,11 @@ const A11y = (() => {
 
   function updateBtn(id, active) {
     const btn = document.getElementById(id);
-    if (btn) btn.classList.toggle('active', active);
+    if (!btn) return;
+    btn.classList.toggle('active', active);
+    if (btn.hasAttribute('aria-pressed') || btn.classList.contains('a11y-btn')) {
+      btn.setAttribute('aria-pressed', String(active));
+    }
   }
 
   function showToast(msg, type = '') {
@@ -484,6 +556,7 @@ const A11y = (() => {
   function init() {
     injectPanelStyles();
     injectA11yButtons();
+    setupA11yButtonStates();
     restore();
     restoreA11yExtras();
 

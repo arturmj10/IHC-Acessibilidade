@@ -209,6 +209,44 @@ document.addEventListener('DOMContentLoaded', () => {
     if (b) b.focus();
   });
 
+  // --- Links de demonstração (FAQ, suporte, etc.) ---
+  document.querySelectorAll('.demo-link').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      const key = el.getAttribute('data-i18n-key');
+      const label = key ? tt(key) : el.textContent.trim();
+      const msg = label + ' — ' + tt('link.demo');
+      if (typeof A11y !== 'undefined') A11y.showToast(msg, 'info');
+    });
+  });
+
+  // --- Sub-navegação do curso: destaque da seção ativa ---
+  const subnav = document.querySelector('.course-subnav');
+  if (subnav) {
+    const links = subnav.querySelectorAll('.course-subnav__link');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    function setActiveSubnav(id) {
+      links.forEach(a => {
+        const on = a.getAttribute('href') === id;
+        a.classList.toggle('is-active', on);
+      });
+    }
+
+    links.forEach(a => {
+      a.addEventListener('click', () => setActiveSubnav(a.getAttribute('href')));
+    });
+
+    if (sections.length && 'IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveSubnav('#' + visible[0].target.id);
+      }, { rootMargin: '-40% 0px -50% 0px', threshold: [0, 0.25, 0.5] });
+
+      sections.forEach(s => obs.observe(s));
+    }
+  }
+
   // --- Botão "Personalizar esta página" (demonstração) ---
   const customizeBtn = document.getElementById('btn-customize');
   if (customizeBtn) {

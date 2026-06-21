@@ -34,6 +34,7 @@
     </a>
     <div class="topbar__spacer"></div>
     <nav class="topbar__actions" data-i18n-aria="nav.user.actions" aria-label="Ações do usuário">
+      <a href="index.html" class="topbar__nav-link" data-i18n="index.courses.title">Minhas disciplinas</a>
       <button class="topbar__icon-btn" id="btn-notifications" data-i18n-aria="nav.notifications" aria-label="Notificações (1 nova)">
         🔔<span class="topbar__badge" aria-hidden="true">1</span>
       </button>
@@ -54,12 +55,14 @@
     </ol>
   </nav>
 
-  <div class="page-body">
+  <div class="page-body page-body--full">
 
     <!-- Sidebar -->
     <aside class="sidebar" data-i18n-aria="nav.sidebar" aria-label="Navegação">
       <nav class="sidebar__nav">
         <a href="dashboard.html" class="sidebar__nav-item sidebar__nav-item--active">🏠 <span data-i18n="nav.home">Página inicial do site</span></a>
+
+        <a href="index.html" class="sidebar__nav-item">📋 <span data-i18n="index.courses.title">Minhas disciplinas</span></a>
 
         <button class="sidebar__tree-toggle" data-target="tree-moodle" aria-expanded="true">
           <span>📚 <span data-i18n="site.name">Moodle UFSC - Presencial</span></span>
@@ -80,10 +83,10 @@
     <!-- Conteúdo principal -->
     <main id="main-content" class="dashboard-main">
 
-      <div style="flex:1; padding: var(--space-lg);">
+      <div class="dashboard-content">
 
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--space-lg);">
-          <h1 style="font-size: var(--font-size-xl); font-weight:400;" data-i18n="dashboard.greeting">Olá, Develin Souza Goncalves! 👋</h1>
+        <div class="dashboard-header">
+          <h1 class="dashboard-header__title" data-i18n="dashboard.greeting">Olá, Develin Souza Goncalves! 👋</h1>
           <button class="btn btn--secondary btn--sm" id="btn-customize" data-i18n="dashboard.customize">Personalizar esta página</button>
         </div>
 
@@ -112,11 +115,11 @@
       <aside class="aside-panel" data-i18n-aria="nav.support" aria-label="Links de suporte">
         <p class="aside-panel__title" data-i18n="dashboard.doubts">Dúvidas?</p>
         <ul class="aside-panel__list">
-          <li><span class="is-static" data-i18n="dashboard.previous">Turmas anteriores</span></li>
-          <li><span class="is-static" data-i18n="index.faq">Perguntas Frequentes</span></li>
-          <li><span class="is-static" data-i18n="index.support">Suporte a Usuários</span></li>
-          <li><span class="is-static" data-i18n="index.policies">Políticas de uso</span></li>
-          <li><span class="is-static" data-i18n="index.deploy">Implantações de Moodle da UFSC</span></li>
+          <li><button type="button" class="aside-link demo-link" data-i18n-key="dashboard.previous" data-i18n="dashboard.previous">Turmas anteriores</button></li>
+          <li><button type="button" class="aside-link demo-link" data-i18n-key="index.faq" data-i18n="index.faq">Perguntas Frequentes</button></li>
+          <li><button type="button" class="aside-link demo-link" data-i18n-key="index.support" data-i18n="index.support">Suporte a Usuários</button></li>
+          <li><button type="button" class="aside-link demo-link" data-i18n-key="index.policies" data-i18n="index.policies">Políticas de uso</button></li>
+          <li><button type="button" class="aside-link demo-link" data-i18n-key="index.deploy" data-i18n="index.deploy">Implantações de Moodle da UFSC</button></li>
         </ul>
       </aside>
 

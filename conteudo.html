@@ -15,9 +15,9 @@
   <!-- Barra de acessibilidade -->
   <div class="a11y-bar" role="toolbar" data-i18n-aria="a11y.toolbar" aria-label="Opções de acessibilidade">
     <span class="a11y-bar__label" data-i18n="a11y.label">Acessibilidade:</span>
-    <button class="a11y-btn" id="btn-contrast" title="Alternar alto contraste">⬛ <span data-i18n="a11y.contrast">Contraste</span></button>
-    <button class="a11y-btn" id="btn-font-size" title="Aumentar tamanho da fonte">A</button>
-    <button class="a11y-btn" id="btn-libras" title="Ativar intérprete de Libras">🤟 <span data-i18n="a11y.libras">Libras</span></button>
+    <button class="a11y-btn" id="btn-contrast" title="Alternar alto contraste" aria-pressed="false">⬛ <span data-i18n="a11y.contrast">Contraste</span></button>
+    <button class="a11y-btn" id="btn-font-size" title="Aumentar tamanho da fonte" aria-pressed="false" aria-label="Tamanho da fonte">A</button>
+    <button class="a11y-btn" id="btn-libras" title="Ativar intérprete de Libras" aria-pressed="false">🤟 <span data-i18n="a11y.libras">Libras</span></button>
     <span class="a11y-bar__label" style="margin-left:var(--space-sm);" data-i18n="a11y.language">Idioma:</span>
     <button class="a11y-btn lang-option" data-lang="pt-BR" aria-pressed="true"  title="Português (Brasil)">🇧🇷 PT</button>
     <button class="a11y-btn lang-option" data-lang="en-US" aria-pressed="false" title="English (US)">🇺🇸 EN</button>
@@ -95,59 +95,65 @@
         <div class="card__header">
           📄 <span data-i18n="course.item.slides1">Slides - Introdução à Interface Humano-Computador</span>
         </div>
-        <div class="card__body" style="padding:0;">
+        <div class="card__body card__body--flush">
 
-          <div id="slide-viewer" data-i18n-aria="content.slide.viewer" style="background:#2b2b2b; padding: var(--space-xl); min-height:420px; display:flex; flex-direction:column; align-items:center; justify-content:center;" aria-label="Visualizador de slides">
+          <div id="slide-viewer" class="slide-viewer" data-i18n-aria="content.slide.viewer" aria-label="Visualizador de slides">
 
-            <div id="slide-content" style="background:#fff; width:100%; max-width:680px; min-height:360px; border-radius: var(--radius-md); box-shadow: var(--shadow-md); padding: var(--space-xxl); display:flex; flex-direction:column; justify-content:center; position:relative;">
+            <div id="slide-content" class="slide-content">
 
               <div class="slide" id="slide-1">
-                <div style="background:var(--color-primary); color:#fff; padding: var(--space-md) var(--space-lg); border-radius: var(--radius-md); margin-bottom:var(--space-lg);">
-                  <p style="font-size:var(--font-size-sm); opacity:0.8;">CIT7213 - <span data-i18n="course.welcome.name">Interface Humano-Computador</span></p>
-                  <h2 style="font-size:var(--font-size-xl); font-weight:700; margin-top:var(--space-xs);" data-i18n="course.section.lesson1">Introdução à IHC</h2>
+                <div class="slide-header">
+                  <p>CIT7213 - <span data-i18n="course.welcome.name">Interface Humano-Computador</span></p>
+                  <h2 data-i18n="course.section.lesson1">Introdução à IHC</h2>
                 </div>
-                <p style="color:var(--color-text-secondary);" data-i18n="slide1.body">O estudo da interação entre pessoas e sistemas computacionais, com foco na usabilidade, acessibilidade e experiência do usuário.</p>
+                <p class="slide-body" data-i18n="slide1.body">O estudo da interação entre pessoas e sistemas computacionais, com foco na usabilidade, acessibilidade e experiência do usuário.</p>
               </div>
 
               <div class="slide" id="slide-2" hidden>
-                <h2 style="font-size:var(--font-size-xl); color:var(--color-primary); margin-bottom:var(--space-md);" data-i18n="slide2.title">O que é IHC?</h2>
-                <ul style="list-style:disc; padding-left:var(--space-xl); color:var(--color-text); line-height:2;">
-                  <li data-i18n="slide2.item1">Área interdisciplinar: computação, psicologia, design</li>
-                  <li data-i18n="slide2.item2">Foco na experiência do usuário (UX)</li>
-                  <li data-i18n="slide2.item3">Envolve usabilidade, acessibilidade e ergonomia</li>
-                  <li data-i18n="slide2.item4">Metodologias: avaliação heurística, testes com usuários</li>
-                </ul>
+                <div class="slide-body">
+                  <h2 data-i18n="slide2.title">O que é IHC?</h2>
+                  <ul>
+                    <li data-i18n="slide2.item1">Área interdisciplinar: computação, psicologia, design</li>
+                    <li data-i18n="slide2.item2">Foco na experiência do usuário (UX)</li>
+                    <li data-i18n="slide2.item3">Envolve usabilidade, acessibilidade e ergonomia</li>
+                    <li data-i18n="slide2.item4">Metodologias: avaliação heurística, testes com usuários</li>
+                  </ul>
+                </div>
               </div>
 
               <div class="slide" id="slide-3" hidden>
-                <h2 style="font-size:var(--font-size-xl); color:var(--color-primary); margin-bottom:var(--space-md);" data-i18n="course.section.lesson2">Heurísticas de Nielsen</h2>
-                <ol style="padding-left:var(--space-xl); color:var(--color-text); line-height:2; font-size:var(--font-size-base);">
-                  <li data-i18n="slide3.item1">Visibilidade do status do sistema</li>
-                  <li data-i18n="slide3.item2">Correspondência com o mundo real</li>
-                  <li data-i18n="slide3.item3">Controle e liberdade do usuário</li>
-                  <li data-i18n="slide3.item4">Consistência e padrões</li>
-                  <li data-i18n="slide3.item5">Prevenção de erros</li>
-                </ol>
+                <div class="slide-body">
+                  <h2 data-i18n="course.section.lesson2">Heurísticas de Nielsen</h2>
+                  <ol>
+                    <li data-i18n="slide3.item1">Visibilidade do status do sistema</li>
+                    <li data-i18n="slide3.item2">Correspondência com o mundo real</li>
+                    <li data-i18n="slide3.item3">Controle e liberdade do usuário</li>
+                    <li data-i18n="slide3.item4">Consistência e padrões</li>
+                    <li data-i18n="slide3.item5">Prevenção de erros</li>
+                  </ol>
+                </div>
               </div>
 
               <div class="slide" id="slide-4" hidden>
-                <h2 style="font-size:var(--font-size-xl); color:var(--color-primary); margin-bottom:var(--space-md);" data-i18n="slide4.title">Para a próxima aula</h2>
-                <div class="alert alert--info" data-i18n="slide4.alert">
-                  📌 Leia o artigo de Nielsen (1994) disponível na plataforma antes da Aula 2.
+                <div class="slide-body">
+                  <h2 data-i18n="slide4.title">Para a próxima aula</h2>
+                  <div class="alert alert--info" data-i18n="slide4.alert">
+                    📌 Leia o artigo de Nielsen (1994) disponível na plataforma antes da Aula 2.
+                  </div>
+                  <p style="margin-top:var(--space-md);" data-i18n="slide4.body">
+                    O <strong>Trabalho 1</strong> será apresentado em grupo. Prazo: <strong>29/06/2026</strong>.
+                  </p>
+                  <a href="atividade.html" class="btn btn--primary" style="margin-top:var(--space-md);" data-i18n="content.next">Ir para Trabalho 1 →</a>
                 </div>
-                <p style="margin-top:var(--space-md); color:var(--color-text-secondary);" data-i18n="slide4.body">
-                  O <strong>Trabalho 1</strong> será apresentado em grupo. Prazo: <strong>29/06/2026</strong>.
-                </p>
-                <a href="atividade.html" class="btn btn--primary" style="margin-top:var(--space-md);" data-i18n="content.next">Ir para Trabalho 1 →</a>
               </div>
 
-              <p id="slide-counter" style="position:absolute; bottom:var(--space-sm); right:var(--space-md); font-size:var(--font-size-sm); color:var(--color-text-muted);" aria-live="polite">1 / 4</p>
+              <p id="slide-counter" class="slide-counter" aria-live="polite">1 / 4</p>
             </div>
 
             <!-- Controles -->
-            <div style="display:flex; gap:var(--space-md); margin-top:var(--space-md); align-items:center;" role="group" aria-label="Controles de navegação dos slides">
+            <div class="slide-controls" role="group" aria-label="Controles de navegação dos slides">
               <button class="btn btn--secondary" id="btn-prev" onclick="changeSlide(-1)" aria-label="Slide anterior" disabled data-i18n="content.slide.prev">← Anterior</button>
-              <div style="display:flex; gap:var(--space-xs);">
+              <div class="slide-dots">
                 <button class="slide-dot active" data-slide="1" onclick="goToSlide(1)" aria-label="Ir para slide 1" aria-current="true"></button>
                 <button class="slide-dot" data-slide="2" onclick="goToSlide(2)" aria-label="Ir para slide 2"></button>
                 <button class="slide-dot" data-slide="3" onclick="goToSlide(3)" aria-label="Ir para slide 3"></button>
@@ -163,19 +169,20 @@
       <div class="card" role="region" data-i18n-aria="content.reading">
         <div class="card__header">🔗 <span data-i18n="content.reading">Leitura Complementar</span></div>
         <div class="card__body">
-          <span class="activity-item is-static" style="padding:0; margin-bottom:var(--space-sm);">
+          <button type="button" class="activity-item demo-link" style="width:100%; border:none; text-align:left;" data-i18n-key="content.reading.link">
             <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
             <span class="activity-item__name" data-i18n="content.reading.link">O que é IHC? — Artigo introdutório</span>
-          </span>
-          <p style="font-size:var(--font-size-sm); color:var(--color-text-muted);" data-i18n="content.reading.hint">Leitura recomendada antes da próxima aula.</p>
+            <span class="activity-item__chevron" aria-hidden="true">→</span>
+          </button>
+          <p class="form-hint" data-i18n="content.reading.hint">Leitura recomendada antes da próxima aula.</p>
         </div>
       </div>
 
       <!-- Navegação entre aulas -->
-      <div style="display:flex; justify-content:space-between; margin-top:var(--space-lg);">
+      <nav class="content-nav" aria-label="Navegação entre conteúdos">
         <a href="curso.html" class="btn btn--secondary" data-i18n="content.back">← Voltar ao curso</a>
         <a href="atividade.html" class="btn btn--primary" data-i18n="content.next">Ir para Trabalho 1 →</a>
-      </div>
+      </nav>
 
     </main>
 
@@ -186,15 +193,6 @@
   </footer>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <style>
-    .slide-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(255,255,255,0.4); border: none; cursor: pointer;
-      padding: 0; transition: background var(--transition);
-    }
-    .slide-dot.active { background: #fff; }
-  </style>
 
   <script>
     let currentSlide = 1;
@@ -214,6 +212,11 @@
       document.getElementById('btn-prev').disabled = currentSlide === 1;
       document.getElementById('btn-next').disabled = currentSlide === totalSlides;
     }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  changeSlide(-1);
+      if (e.key === 'ArrowRight') changeSlide(1);
+    });
   </script>
 
   <script src="js/i18n.js"></script>

@@ -4,26 +4,26 @@
    alto contraste, dark mode, ajuste de fonte.
    ============================================= */
 
-/* --- Tokens de design (tema padrão UFSC) --- */
+/* --- Tokens de design (tema padrão UFSC / Moodle) --- */
 :root {
   /* Cores institucionais */
-  --color-primary:       #1a237e; /* azul escuro UFSC */
+  --color-primary:       #1a237e;
   --color-primary-hover: #283593;
   --color-primary-light: #e8eaf6;
-  --color-accent:        #c62828; /* vermelho para destaques/alertas */
+  --color-accent:        #c62828;
   --color-accent-light:  #ffebee;
 
   /* Superfícies */
-  --color-bg:            #f5f5f5;
+  --color-bg:            #f0f2f5;
   --color-surface:       #ffffff;
-  --color-surface-alt:   #f9f9f9;
-  --color-border:        #d0d0d0;
-  --color-border-light:  #e8e8e8;
+  --color-surface-alt:   #f7f8fa;
+  --color-border:        #c5c9d0;
+  --color-border-light:  #e2e5ea;
 
-  /* Texto */
-  --color-text:          #212121;
-  --color-text-secondary:#555555;
-  --color-text-muted:    #595959;
+  /* Texto — contraste ≥ 4.5:1 sobre branco */
+  --color-text:          #1a1a1a;
+  --color-text-secondary:#424242;
+  --color-text-muted:    #616161;
   --color-text-on-primary: #ffffff;
   --color-link:          #1a237e;
   --color-link-hover:    #c62828;
@@ -31,24 +31,25 @@
   /* Sidebar */
   --color-sidebar-bg:    #ffffff;
   --color-sidebar-text:  #212121;
-  --color-sidebar-hover: #e8eaf6;
+  --color-sidebar-hover: #eef0fb;
   --color-sidebar-active:#1a237e;
 
   /* Navegação */
   --color-nav-bg:        #1a237e;
   --color-nav-text:      #ffffff;
 
-  /* Tipografia */
+  /* Tipografia — escala modular (1.25) */
   --font-family:         -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font-size-base:      14px;
-  --font-size-sm:        12px;
-  --font-size-md:        16px;
-  --font-size-lg:        20px;
-  --font-size-xl:        24px;
-  --font-size-xxl:       30px;
-  --line-height:         1.5;
+  --font-size-base:      15px;
+  --font-size-sm:        13px;
+  --font-size-md:        17px;
+  --font-size-lg:        21px;
+  --font-size-xl:        26px;
+  --font-size-xxl:       32px;
+  --line-height:         1.55;
+  --line-height-tight:   1.3;
 
-  /* Espaçamento */
+  /* Espaçamento — escala 8px */
   --space-xs:  4px;
   --space-sm:  8px;
   --space-md:  16px;
@@ -57,20 +58,25 @@
   --space-xxl: 48px;
 
   /* Bordas e sombras */
-  --radius-sm: 3px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-md: 0 2px 8px rgba(0,0,0,0.12);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 3px rgba(26, 35, 126, 0.08);
+  --shadow-md: 0 4px 16px rgba(26, 35, 126, 0.12);
 
   /* Transições */
-  --transition: 0.15s ease;
+  --transition: 0.18s ease;
 
-  /* Largura máxima do conteúdo */
+  /* Ergonomia — alvos de toque (WCAG 2.5.5 / ISO 9241) */
+  --touch-target-min: 44px;
+  --focus-ring: 3px solid var(--color-accent);
+  --focus-offset: 2px;
+
+  /* Larguras */
   --max-width: 1200px;
-
-  /* Largura da sidebar */
-  --sidebar-width: 240px;
+  --sidebar-width: 260px;
+  --topbar-height: 56px;
+  --a11y-bar-height: auto;
 }
 
 /* --- Tema: Alto Contraste --- */
@@ -84,7 +90,7 @@
   --color-border:         #000000;
   --color-text:           #000000;
   --color-text-secondary: #000000;
-  --color-text-muted:     #333333;
+  --color-text-muted:     #222222;
   --color-link:           #0000cc;
   --color-link-hover:     #cc0000;
   --color-nav-bg:         #000000;
@@ -92,42 +98,48 @@
   --color-sidebar-bg:     #ffffff;
   --color-sidebar-hover:  #ffff00;
   --color-sidebar-active: #000000;
+  --shadow-sm: none;
+  --shadow-md: 0 0 0 3px #000;
 }
 
 /* --- Tamanho de fonte: acessibilidade --- */
 [data-font-size="large"] {
   --font-size-base: 18px;
   --font-size-sm:   15px;
-  --font-size-md:   20px;
-  --font-size-lg:   24px;
-  --font-size-xl:   28px;
+  --font-size-md:   21px;
+  --font-size-lg:   26px;
+  --font-size-xl:   32px;
 }
 
 [data-font-size="xlarge"] {
   --font-size-base: 22px;
   --font-size-sm:   18px;
-  --font-size-md:   24px;
-  --font-size-lg:   30px;
-  --font-size-xl:   36px;
+  --font-size-md:   26px;
+  --font-size-lg:   32px;
+  --font-size-xl:   40px;
 }
 
 /* --- Modo acessibilidade: alvos maiores e links mais evidentes --- */
 [data-a11y-mode="on"] .btn {
   padding: var(--space-md) var(--space-lg);
   font-size: var(--font-size-md);
+  min-height: var(--touch-target-min);
 }
 [data-a11y-mode="on"] .a11y-btn,
 [data-a11y-mode="on"] .topbar__icon-btn,
 [data-a11y-mode="on"] .topbar__user {
+  min-height: var(--touch-target-min);
   padding: var(--space-sm) var(--space-md);
 }
 [data-a11y-mode="on"] .sidebar__nav-item,
 [data-a11y-mode="on"] .sidebar__tree-toggle,
 [data-a11y-mode="on"] .activity-item {
   padding: var(--space-md);
+  min-height: var(--touch-target-min);
 }
 [data-a11y-mode="on"] a:not(.btn):not(.topbar__logo-wrap):not(.topbar__user) {
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 [data-a11y-mode="on"] :focus-visible {
   outline-width: 4px;
@@ -144,6 +156,7 @@
 /* --- Botão "Modo acessibilidade" em destaque --- */
 .a11y-btn--mode {
   font-weight: 700;
+  border-color: var(--color-primary);
 }
 
 /* --- Reset moderno --- */
@@ -158,6 +171,15 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
@@ -165,6 +187,8 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -175,12 +199,17 @@ a {
 a:hover {
   color: var(--color-link-hover);
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-/* Foco visível para navegação por teclado */
+/* Foco visível — WCAG 2.4.7 */
 :focus-visible {
-  outline: 3px solid var(--color-accent);
-  outline-offset: 2px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 ul, ol {
@@ -195,9 +224,10 @@ img {
 button {
   font-family: var(--font-family);
   cursor: pointer;
+  min-height: var(--touch-target-min);
 }
 
-/* Skip link para acessibilidade */
+/* Skip link — WCAG 2.4.1 */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -209,8 +239,30 @@ button {
   font-weight: 600;
   z-index: 9999;
   transition: top var(--transition);
+  min-height: var(--touch-target-min);
+  display: inline-flex;
+  align-items: center;
 }
 
 .skip-link:focus {
   top: var(--space-md);
+}
+
+/* Utilitários de texto */
+.text-lead {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height);
+  color: var(--color-text-secondary);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

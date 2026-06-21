@@ -94,27 +94,27 @@
       <div class="card" role="region" data-i18n-aria="activity.details">
         <div class="card__header">📝 <span data-i18n="activity.details">Detalhes da Atividade</span></div>
         <div class="card__body">
-          <table style="width:100%; border-collapse:collapse; font-size:var(--font-size-base);">
+          <table class="data-table">
             <tbody>
-              <tr style="border-bottom:1px solid var(--color-border-light);">
-                <th style="text-align:left; padding:var(--space-sm) var(--space-md) var(--space-sm) 0; color:var(--color-text-secondary); font-weight:600; width:160px;" scope="row" data-i18n="activity.open">Abertura</th>
-                <td style="padding:var(--space-sm) 0;" data-i18n="activity.open.value">Segunda-feira, 9 jun. 2026, 00:00</td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--color-border-light);">
-                <th style="text-align:left; padding:var(--space-sm) var(--space-md) var(--space-sm) 0; color:var(--color-text-secondary); font-weight:600;" scope="row" data-i18n="activity.deadline">Prazo</th>
-                <td style="padding:var(--space-sm) 0;"><strong style="color:var(--color-accent);" data-i18n="activity.deadline.value">Domingo, 29 jun. 2026, 23:59</strong></td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--color-border-light);">
-                <th style="text-align:left; padding:var(--space-sm) var(--space-md) var(--space-sm) 0; color:var(--color-text-secondary); font-weight:600;" scope="row" data-i18n="activity.status">Status</th>
-                <td style="padding:var(--space-sm) 0;"><span class="badge badge--pending" data-i18n="activity.status.notsubmitted">Não enviado</span></td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--color-border-light);">
-                <th style="text-align:left; padding:var(--space-sm) var(--space-md) var(--space-sm) 0; color:var(--color-text-secondary); font-weight:600;" scope="row" data-i18n="activity.attempts">Tentativas</th>
-                <td style="padding:var(--space-sm) 0;" data-i18n="activity.attempts.value">Ilimitadas até o prazo</td>
+              <tr>
+                <th scope="row" data-i18n="activity.open">Abertura</th>
+                <td data-i18n="activity.open.value">Segunda-feira, 9 jun. 2026, 00:00</td>
               </tr>
               <tr>
-                <th style="text-align:left; padding:var(--space-sm) var(--space-md) var(--space-sm) 0; color:var(--color-text-secondary); font-weight:600;" scope="row" data-i18n="activity.maxgrade">Nota máxima</th>
-                <td style="padding:var(--space-sm) 0;">10,00</td>
+                <th scope="row" data-i18n="activity.deadline">Prazo</th>
+                <td><strong style="color:var(--color-accent);" data-i18n="activity.deadline.value">Domingo, 29 jun. 2026, 23:59</strong></td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="activity.status">Status</th>
+                <td><span class="badge badge--pending" data-i18n="activity.status.notsubmitted">Não enviado</span></td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="activity.attempts">Tentativas</th>
+                <td data-i18n="activity.attempts.value">Ilimitadas até o prazo</td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="activity.maxgrade">Nota máxima</th>
+                <td>10,00</td>
               </tr>
             </tbody>
           </table>
@@ -128,7 +128,7 @@
           <p><strong data-i18n="activity.objective">Objetivo:</strong> <span data-i18n="activity.objective.value">Aplicar as Heurísticas de Nielsen na avaliação e redesign de uma interface digital.</span></p>
           <br>
           <p><strong data-i18n="activity.instructions">Instruções:</strong></p>
-          <ol style="list-style:decimal; padding-left:var(--space-xl); margin-top:var(--space-sm);">
+          <ol class="numbered-list">
             <li data-i18n="activity.step1">Escolha uma interface digital (aplicativo, site ou sistema) para avaliar.</li>
             <li data-i18n="activity.step2">Identifique ao menos <strong>5 problemas de usabilidade</strong> com base nas heurísticas.</li>
             <li data-i18n="activity.step3">Proponha soluções para cada problema identificado (pode ser em texto ou wireframe).</li>
@@ -186,7 +186,7 @@
               </p>
             </div>
 
-            <div style="display:flex; gap:var(--space-sm); justify-content:flex-end; margin-top:var(--space-lg);">
+            <div class="form-actions">
               <button type="button" class="btn btn--secondary" id="btn-draft" data-i18n="activity.form.draft">💾 Salvar rascunho</button>
               <button type="submit" class="btn btn--primary btn--lg" data-i18n="activity.form.submit">📤 Enviar atividade</button>
             </div>
@@ -196,14 +196,14 @@
 
       <!-- Confirmação de envio -->
       <div id="submission-success" class="card" hidden role="region" aria-live="polite" data-i18n-aria="activity.success.title">
-        <div class="card__body" style="text-align:center; padding: var(--space-xxl);">
-          <div style="font-size:48px; margin-bottom:var(--space-md);" aria-hidden="true">✅</div>
-          <h2 id="submission-success-title" tabindex="-1" style="font-size:var(--font-size-xl); margin-bottom:var(--space-sm);" data-i18n="activity.success.title">Atividade enviada com sucesso!</h2>
-          <p style="color:var(--color-text-secondary); margin-bottom:var(--space-lg);">
+        <div class="card__body submission-success">
+          <div class="submission-success__icon" aria-hidden="true">✅</div>
+          <h2 id="submission-success-title" class="submission-success__title" tabindex="-1" data-i18n="activity.success.title">Atividade enviada com sucesso!</h2>
+          <p class="submission-success__body">
             <span data-i18n="activity.success.body">Seu trabalho foi recebido em</span> <strong id="submission-date"></strong>.<br>
             <span data-i18n="activity.success.body2">Você receberá a avaliação até o dia 13 de julho de 2026.</span>
           </p>
-          <div style="display:flex; gap:var(--space-sm); justify-content:center;">
+          <div class="submission-success__actions">
             <button class="btn btn--secondary" onclick="editSubmission()" data-i18n="activity.success.edit">✏️ Editar envio</button>
             <a href="curso.html" class="btn btn--primary" data-i18n="activity.success.back">← Voltar ao curso</a>
           </div>

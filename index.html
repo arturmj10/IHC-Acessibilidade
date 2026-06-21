@@ -35,6 +35,7 @@
     </a>
     <div class="topbar__spacer"></div>
     <nav class="topbar__actions" data-i18n-aria="nav.user.actions" aria-label="Ações do usuário">
+      <a href="dashboard.html" class="topbar__nav-link" data-i18n="nav.panel">Painel</a>
       <button class="topbar__icon-btn" id="btn-notifications" data-i18n-aria="nav.notifications" aria-label="Notificações (1 nova)">
         🔔<span class="topbar__badge" aria-hidden="true">1</span>
       </button>
@@ -65,45 +66,92 @@
   </div>
 
   <!-- Conteúdo principal -->
-  <main id="main-content" class="page-layout--full" style="max-width:900px;">
+  <main id="main-content" class="page-layout--full index-page">
 
-    <div style="font-size: var(--font-size-lg); line-height: 1.7; margin-bottom: var(--space-xl);">
-      <p>
-        <span data-i18n="index.legacy">O conteúdo das disciplinas e turmas do semestre</span>
-        <strong style="color: var(--color-accent);" data-i18n="index.legacy.highlight">2023/2 e anteriores</strong>
-        <span data-i18n="index.legacy.suffix">está disponível em</span>
-        <strong>legado.moodle.ufsc.br</strong>
-      </p>
-    </div>
+    <!-- Acesso principal: disciplinas -->
+    <section class="index-primary" aria-labelledby="index-courses-heading">
+      <div class="index-primary__head">
+        <div>
+          <h2 id="index-courses-heading" class="index-primary__title" data-i18n="index.courses.title">Minhas disciplinas</h2>
+          <p class="index-primary__hint" data-i18n="index.courses.subtitle">Acesse suas turmas do semestre atual</p>
+        </div>
+        <a href="dashboard.html" class="btn btn--secondary" data-i18n="index.courses.panel">Ver painel completo →</a>
+      </div>
 
-    <div role="region" aria-label="Links institucionais">
-      <ul style="display:flex; flex-direction:column; gap: var(--space-xs);">
+      <p class="index-period-label" data-i18n="index.courses.period">2026 — 1º semestre</p>
+
+      <ul class="index-course-grid">
         <li>
-          <span class="activity-item is-static" style="border:1px solid var(--color-border-light); border-radius: var(--radius-md);">
-            <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">📋</span>
-            <span class="activity-item__name" data-i18n="index.faq">Perguntas Frequentes</span>
-          </span>
-        </li>
-        <li>
-          <span class="activity-item is-static" style="border:1px solid var(--color-border-light); border-radius: var(--radius-md);">
-            <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
-            <span class="activity-item__name" data-i18n="index.support">Suporte a Usuários</span>
-          </span>
-        </li>
-        <li>
-          <span class="activity-item is-static" style="border:1px solid var(--color-border-light); border-radius: var(--radius-md);">
-            <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
-            <span class="activity-item__name" data-i18n="index.policies">Políticas de uso</span>
-          </span>
-        </li>
-        <li>
-          <span class="activity-item is-static" style="border:1px solid var(--color-border-light); border-radius: var(--radius-md);">
-            <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
-            <span class="activity-item__name" data-i18n="index.deploy">Implantações de Moodle da UFSC</span>
-          </span>
+          <a href="curso.html" class="course-card">
+            <span class="course-card__icon" aria-hidden="true">📘</span>
+            <span class="course-card__body">
+              <span class="course-card__code">CIT7213-05652 (20261)</span>
+              <span class="course-card__name" data-i18n="course.welcome.name">Interface Humano-Computador</span>
+            </span>
+            <span class="course-card__arrow" aria-hidden="true">→</span>
+          </a>
         </li>
       </ul>
-    </div>
+
+      <div class="index-quick-actions">
+        <a href="dashboard.html" class="quick-action-card quick-action-card--primary">
+          <span class="quick-action-card__icon" aria-hidden="true">🏠</span>
+          <span class="quick-action-card__label" data-i18n="nav.panel">Painel do aluno</span>
+        </a>
+        <a href="curso.html" class="quick-action-card">
+          <span class="quick-action-card__icon" aria-hidden="true">📚</span>
+          <span class="quick-action-card__label" data-i18n="index.courses.enter">Entrar na disciplina</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Informações complementares -->
+    <aside class="index-aside" aria-labelledby="index-info-heading">
+      <div class="index-intro" role="note">
+        <p>
+          <span data-i18n="index.legacy">O conteúdo das disciplinas e turmas do semestre</span>
+          <strong style="color: var(--color-accent);" data-i18n="index.legacy.highlight">2023/2 e anteriores</strong>
+          <span data-i18n="index.legacy.suffix">está disponível em</span>
+          <a href="https://legado.moodle.ufsc.br" target="_blank" rel="noopener noreferrer"><strong>legado.moodle.ufsc.br</strong></a>
+        </p>
+      </div>
+
+      <section class="index-info-block">
+        <h2 id="index-info-heading" class="index-info-block__title" data-i18n="index.info.title">Informações institucionais</h2>
+        <nav aria-label="Links institucionais">
+          <ul class="index-links">
+            <li>
+              <a href="#" class="activity-item demo-link" data-i18n-key="index.faq">
+                <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">📋</span>
+                <span class="activity-item__name" data-i18n="index.faq">Perguntas Frequentes</span>
+                <span class="activity-item__chevron" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="activity-item demo-link" data-i18n-key="index.support">
+                <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
+                <span class="activity-item__name" data-i18n="index.support">Suporte a Usuários</span>
+                <span class="activity-item__chevron" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="activity-item demo-link" data-i18n-key="index.policies">
+                <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
+                <span class="activity-item__name" data-i18n="index.policies">Políticas de uso</span>
+                <span class="activity-item__chevron" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="activity-item demo-link" data-i18n-key="index.deploy">
+                <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📘</span>
+                <span class="activity-item__name" data-i18n="index.deploy">Implantações de Moodle da UFSC</span>
+                <span class="activity-item__chevron" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </aside>
 
   </main>
 
