@@ -79,7 +79,7 @@ const Sidebars = (() => {
 
     nav.innerHTML = `
       <a href="dashboard.html" class="sidebar__nav-item sidebar__nav-item--active" data-nav-id="dashboard-home">
-        🏠 <span data-i18n="nav.home">${tt('nav.home')}</span>
+        🏠 <span data-i18n="nav.panel">${tt('nav.panel')}</span>
       </a>
       ${linkItem({ id: 'courses-index', href: 'index.html', i18n: 'index.courses.title', icon: '📋' })}
       <button type="button" class="sidebar__tree-toggle open" data-target="tree-moodle" aria-expanded="true">
