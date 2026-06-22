@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-i18n-title="page.title.participants">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Participantes - Moodle UFSC</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-i18n="skip.link">Ir para o conteúdo principal</a>
+  <div class="a11y-bar" role="toolbar" data-i18n-aria="a11y.toolbar" aria-label="Opções de acessibilidade">
+    <span class="a11y-bar__label" data-i18n="a11y.label">Acessibilidade:</span>
+    <button class="a11y-btn" id="btn-contrast">⬛ <span data-i18n="a11y.contrast">Contraste</span></button>
+    <button class="a11y-btn" id="btn-font-size">A</button>
+    <button class="a11y-btn" id="btn-libras">🤟 <span data-i18n="a11y.libras">Libras</span></button>
+    <span class="a11y-bar__label" style="margin-left:var(--space-sm);" data-i18n="a11y.language">Idioma:</span>
+    <button class="a11y-btn lang-option" data-lang="pt-BR" aria-pressed="true">🇧🇷 PT</button>
+    <button class="a11y-btn lang-option" data-lang="en-US" aria-pressed="false">🇺🇸 EN</button>
+    <button class="a11y-btn lang-option" data-lang="es" aria-pressed="false">🇪🇸 ES</button>
+  </div>
+  <header class="topbar" role="banner">
+    <a class="topbar__logo-wrap" href="index.html"><span class="topbar__site-name" data-i18n="site.name">Moodle UFSC - Presencial</span></a>
+    <div class="topbar__spacer"></div>
+    <nav class="topbar__actions">
+      <a href="dashboard.html" class="topbar__nav-link" data-i18n="nav.panel">Painel</a>
+      <button class="topbar__icon-btn" id="btn-notifications">🔔</button>
+      <button class="topbar__icon-btn" id="btn-messages">💬</button>
+      <button class="topbar__user" id="btn-profile"><span>Develin Souza Goncalves</span></button>
+    </nav>
+  </header>
+  <nav class="breadcrumb-bar"><ol class="breadcrumb breadcrumb--full">
+    <li><a href="dashboard.html" data-i18n="nav.panel">Painel</a></li><li class="breadcrumb__sep">/</li>
+    <li><a href="curso.html" data-i18n="course.welcome.name">Interface Humano-Computador</a></li><li class="breadcrumb__sep">/</li>
+    <li aria-current="page" data-i18n="nav.participants">Participantes</li>
+  </ol></nav>
+  <div class="page-body page-body--full">
+    <aside class="sidebar" data-sidebar="course" data-page="participants" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
+      <nav class="sidebar__nav"></nav>
+    </aside>
+    <main id="main-content" class="main-content main-content--course">
+      <h1 class="course-section__title" data-i18n="nav.participants">Participantes</h1>
+      <div class="card"><div class="card__body card__body--flush">
+        <table class="data-table participants-table">
+          <thead><tr><th scope="col" data-i18n="participants.name">Nome</th><th scope="col" data-i18n="participants.role">Papel</th><th scope="col" data-i18n="participants.email">E-mail</th></tr></thead>
+          <tbody>
+            <tr><td>Prof. IHC - UFSC</td><td data-i18n="participants.teacher">Professor(a)</td><td><a href="mailto:prof.ihc@ufsc.br">prof.ihc@ufsc.br</a></td></tr>
+            <tr><td>Develin Souza Goncalves</td><td data-i18n="participants.student">Estudante</td><td><a href="mailto:develin@aluno.ufsc.br">develin@aluno.ufsc.br</a></td></tr>
+            <tr><td>Maria Silva</td><td data-i18n="participants.student">Estudante</td><td><a href="mailto:maria@aluno.ufsc.br">maria@aluno.ufsc.br</a></td></tr>
+            <tr><td>João Santos</td><td data-i18n="participants.student">Estudante</td><td><a href="mailto:joao@aluno.ufsc.br">joao@aluno.ufsc.br</a></td></tr>
+          </tbody>
+        </table>
+      </div></div>
+      <a href="curso.html" class="btn btn--secondary" data-i18n="content.back">← Voltar ao curso</a>
+    </main>
+  </div>
+  <footer class="site-footer"><p data-i18n="site.footer">Universidade Federal de Santa Catarina — Moodle UFSC Presencial</p></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/i18n.js"></script><script src="js/sidebar.js"></script><script src="js/accessibility.js"></script><script src="js/nav.js"></script>
+</body>
+</html>

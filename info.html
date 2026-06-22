@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-i18n-title="page.title.info">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informações - Moodle UFSC</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content" data-i18n="skip.link">Ir para o conteúdo principal</a>
+
+  <div class="a11y-bar" role="toolbar" data-i18n-aria="a11y.toolbar" aria-label="Opções de acessibilidade">
+    <span class="a11y-bar__label" data-i18n="a11y.label">Acessibilidade:</span>
+    <button class="a11y-btn" id="btn-contrast">⬛ <span data-i18n="a11y.contrast">Contraste</span></button>
+    <button class="a11y-btn" id="btn-font-size">A</button>
+    <button class="a11y-btn" id="btn-libras">🤟 <span data-i18n="a11y.libras">Libras</span></button>
+    <span class="a11y-bar__label" style="margin-left:var(--space-sm);" data-i18n="a11y.language">Idioma:</span>
+    <button class="a11y-btn lang-option" data-lang="pt-BR" aria-pressed="true">🇧🇷 PT</button>
+    <button class="a11y-btn lang-option" data-lang="en-US" aria-pressed="false">🇺🇸 EN</button>
+    <button class="a11y-btn lang-option" data-lang="es" aria-pressed="false">🇪🇸 ES</button>
+  </div>
+
+  <header class="topbar" role="banner">
+    <a class="topbar__logo-wrap" href="index.html" aria-label="Moodle UFSC">
+      <svg class="topbar__logo-img" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="4" y="28" font-family="Arial" font-size="22" font-weight="bold" fill="white">UFSC</text>
+      </svg>
+      <span class="topbar__site-name" data-i18n="site.name">Moodle UFSC - Presencial</span>
+    </a>
+    <div class="topbar__spacer"></div>
+    <nav class="topbar__actions" data-i18n-aria="nav.user.actions" aria-label="Ações do usuário">
+      <a href="dashboard.html" class="topbar__nav-link" data-i18n="nav.panel">Painel</a>
+      <button class="topbar__icon-btn" id="btn-notifications" data-i18n-aria="nav.notifications" aria-label="Notificações">🔔</button>
+      <button class="topbar__icon-btn" id="btn-messages" data-i18n-aria="nav.messages" aria-label="Mensagens">💬</button>
+      <button class="topbar__user" id="btn-profile" data-i18n-aria="nav.profile" aria-label="Perfil">
+        <span>Develin Souza Goncalves</span>
+        <img class="topbar__avatar" src="https://ui-avatars.com/api/?name=Develin+Souza&background=3949ab&color=fff&size=64" alt="">
+      </button>
+    </nav>
+  </header>
+
+  <nav class="breadcrumb-bar" data-i18n-aria="nav.breadcrumb" aria-label="Localização na página">
+    <ol class="breadcrumb breadcrumb--full">
+      <li><a href="index.html" data-i18n="nav.home">Página inicial do site</a></li>
+      <li class="breadcrumb__sep" aria-hidden="true">/</li>
+      <li aria-current="page" id="info-breadcrumb">Informações</li>
+    </ol>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header__inner">
+      <h1 class="page-header__title" id="info-page-title" data-i18n="index.info.title">Informações institucionais</h1>
+    </div>
+  </div>
+
+  <main id="main-content" class="page-layout--full info-page" style="grid-template-columns:240px 1fr; max-width:var(--max-width);">
+
+    <nav class="info-nav" aria-label="Tópicos de informação">
+      <a href="#faq" class="info-nav__link is-active" data-i18n="index.faq">Perguntas Frequentes</a>
+      <a href="#suporte" class="info-nav__link" data-i18n="index.support">Suporte a Usuários</a>
+      <a href="#politicas" class="info-nav__link" data-i18n="index.policies">Políticas de uso</a>
+      <a href="#implantacoes" class="info-nav__link" data-i18n="index.deploy">Implantações Moodle</a>
+      <a href="#turmas-anteriores" class="info-nav__link" data-i18n="dashboard.previous">Turmas anteriores</a>
+      <a href="#leitura-ihc" class="info-nav__link" data-i18n="content.reading.link">Leitura: O que é IHC?</a>
+      <a href="#artigo-nielsen" class="info-nav__link" data-i18n="course.item.article2">Artigo Nielsen (1994)</a>
+    </nav>
+
+    <div class="info-content">
+
+      <section id="faq" class="info-panel card">
+        <div class="card__body">
+          <h2 data-i18n="index.faq">Perguntas Frequentes</h2>
+          <dl class="info-faq">
+            <dt data-i18n="info.faq.q1">Como acesso minhas disciplinas?</dt>
+            <dd data-i18n="info.faq.a1">Na página inicial, clique em <strong>Minhas disciplinas</strong> ou acesse o <a href="dashboard.html">Painel do aluno</a>.</dd>
+            <dt data-i18n="info.faq.q2">Esqueci minha senha. O que faço?</dt>
+            <dd data-i18n="info.faq.a2">Use a opção <em>Esqueci minha senha</em> na tela de login ou entre em contato pelo <a href="#suporte">Suporte a Usuários</a>.</dd>
+            <dt data-i18n="info.faq.q3">Onde vejo turmas de semestres anteriores?</dt>
+            <dd data-i18n="info.faq.a3">Conteúdos até 2023/2 estão no <a href="https://legado.moodle.ufsc.br" target="_blank" rel="noopener noreferrer">Moodle legado</a>.</dd>
+          </dl>
+        </div>
+      </section>
+
+      <section id="suporte" class="info-panel card" hidden>
+        <div class="card__body">
+          <h2 data-i18n="index.support">Suporte a Usuários</h2>
+          <p data-i18n="info.support.body">Para dúvidas técnicas sobre a plataforma, entre em contato com a equipe de suporte da UFSC.</p>
+          <ul class="info-list">
+            <li>📧 <a href="mailto:suporte.moodle@ufsc.br">suporte.moodle@ufsc.br</a></li>
+            <li>📞 (48) 3721-0000 — ramal 1234</li>
+            <li>🕐 Seg–Sex, 8h–18h</li>
+          </ul>
+          <a href="dashboard.html" class="btn btn--primary" style="margin-top:var(--space-md);" data-i18n="info.support.back">Voltar ao painel</a>
+        </div>
+      </section>
+
+      <section id="politicas" class="info-panel card" hidden>
+        <div class="card__body">
+          <h2 data-i18n="index.policies">Políticas de uso</h2>
+          <p data-i18n="info.policies.body">O Moodle UFSC Presencial deve ser utilizado para fins acadêmicos, respeitando a privacidade, os direitos autorais e o código de conduta da universidade.</p>
+          <ol class="numbered-list">
+            <li data-i18n="info.policies.item1">Não compartilhe credenciais de acesso.</li>
+            <li data-i18n="info.policies.item2">Respeite prazos e regras de cada atividade.</li>
+            <li data-i18n="info.policies.item3">Conteúdos do curso são protegidos por direitos autorais.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="implantacoes" class="info-panel card" hidden>
+        <div class="card__body">
+          <h2 data-i18n="index.deploy">Implantações de Moodle da UFSC</h2>
+          <p data-i18n="info.deploy.body">A UFSC mantém diferentes ambientes Moodle conforme o tipo de curso:</p>
+          <ul class="info-list">
+            <li><strong>Presencial</strong> — cursos presenciais (este ambiente)</li>
+            <li><strong>EAD</strong> — cursos a distância</li>
+            <li><strong>Legado</strong> — <a href="https://legado.moodle.ufsc.br" target="_blank" rel="noopener noreferrer">legado.moodle.ufsc.br</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="turmas-anteriores" class="info-panel card" hidden>
+        <div class="card__body">
+          <h2 data-i18n="dashboard.previous">Turmas anteriores</h2>
+          <p data-i18n="info.previous.body">Disciplinas e turmas do semestre <strong>2023/2 e anteriores</strong> permanecem disponíveis no ambiente legado.</p>
+          <a href="https://legado.moodle.ufsc.br" target="_blank" rel="noopener noreferrer" class="btn btn--primary" data-i18n="info.previous.link">Acessar Moodle legado →</a>
+        </div>
+      </section>
+
+      <section id="leitura-ihc" class="info-panel card" hidden>
+        <div class="card__body">
+          <h2 data-i18n="content.reading.link">O que é IHC? — Artigo introdutório</h2>
+          <p data-i18n="info.reading.body">Interface Humano-Computador (IHC) estuda como pessoas interagem com sistemas digitais, buscando usabilidade, acessibilidade e boa experiência do usuário.</p>
+          <p data-i18n="info.reading.body2">Este material complementa a Aula 1 da disciplina.</p>
+          <a href="conteudo.html" class="btn btn--secondary" data-i18n="info.reading.back">← Voltar aos slides da Aula 1</a>
+        </div>
+      </section>
+
+      <section id="artigo-nielsen" class="info-panel card" hidden>
+        <div class="card__body">
+          <h2 data-i18n="course.item.article2">Artigo: Nielsen, J. (1994)</h2>
+          <p><strong>Usability Inspection Methods</strong> — Wiley & Sons, 1994.</p>
+          <p data-i18n="info.article.body">Artigo fundamental sobre métodos de inspeção de usabilidade, incluindo a avaliação heurística. Leitura obrigatória para a Aula 2.</p>
+          <a href="aula2.html" class="btn btn--secondary" data-i18n="info.article.back">← Voltar à Aula 2</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p data-i18n="site.footer">Universidade Federal de Santa Catarina — Moodle UFSC Presencial</p>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

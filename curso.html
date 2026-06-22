@@ -62,26 +62,8 @@
   <div class="page-body page-body--full">
 
     <!-- Sidebar -->
-    <aside class="sidebar" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
-      <nav class="sidebar__nav">
-        <a href="dashboard.html" class="sidebar__nav-item">🏠 <span data-i18n="nav.panel">Painel</span></a>
-        <a href="index.html" class="sidebar__nav-item">📋 <span data-i18n="index.courses.title">Minhas disciplinas</span></a>
-
-        <div class="sidebar__section-title" data-i18n="course.sidebar.current">Disciplina atual</div>
-
-        <button class="sidebar__tree-toggle open" data-target="tree-course" aria-expanded="true">
-          <span>📘 <span data-i18n="course.welcome.name">Interface Humano-Computador</span></span>
-          <span class="arrow" aria-hidden="true">▶</span>
-        </button>
-        <div class="sidebar__subtree open" id="tree-course">
-          <a href="curso.html" class="sidebar__nav-item sidebar__nav-item--active" data-i18n="course.sidebar.home">Página inicial</a>
-          <a href="#sec-conteudo" class="sidebar__nav-item" data-i18n="nav.content">Conteúdo</a>
-          <a href="#sec-atividades" class="sidebar__nav-item" data-i18n="nav.activities">Atividades</a>
-          <a href="#sec-comunicacao" class="sidebar__nav-item" data-i18n="course.section.comms">Comunicação</a>
-          <span class="sidebar__nav-item is-static" data-i18n="nav.participants">Participantes</span>
-          <span class="sidebar__nav-item is-static" data-i18n="nav.grades">Notas</span>
-        </div>
-      </nav>
+    <aside class="sidebar" data-sidebar="course" data-page="home" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
+      <nav class="sidebar__nav"></nav>
     </aside>
 
     <!-- Área principal do curso (largura total) -->
@@ -126,10 +108,11 @@
 
           <div class="course-notices">
             <h3 class="course-notices__title">📢 <span data-i18n="course.section.notices">Avisos</span></h3>
-            <span class="activity-item is-static course-notices__item">
+            <a href="avisos.html" class="activity-item course-notices__item">
               <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">💬</span>
               <span class="activity-item__name" data-i18n="course.item.notices">Avisos</span>
-            </span>
+              <span class="activity-item__chevron" aria-hidden="true">→</span>
+            </a>
           </div>
         </section>
 
@@ -155,7 +138,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="conteudo.html" class="activity-item">
+                  <a href="info.html#leitura-ihc" class="activity-item">
                     <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
                     <span class="activity-item__name" data-i18n="course.item.reading1">Leitura complementar - O que é IHC?</span>
                     <span class="activity-item__chevron" aria-hidden="true">→</span>
@@ -168,7 +151,7 @@
               <h3 id="topic-lesson2" class="course-topic__title" data-i18n="course.section.lesson2">Aula 2 — Heurísticas de Nielsen</h3>
               <ul class="course-topic__list">
                 <li>
-                  <a href="conteudo.html" class="activity-item">
+                  <a href="aula2.html" class="activity-item">
                     <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
                     <span class="activity-item__name" data-i18n="course.item.slides2">Slides - As 10 Heurísticas de Nielsen</span>
                     <span class="activity-item__meta">PDF</span>
@@ -176,7 +159,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="conteudo.html" class="activity-item">
+                  <a href="info.html#artigo-nielsen" class="activity-item">
                     <span class="activity-item__icon activity-item__icon--url" aria-hidden="true">🔗</span>
                     <span class="activity-item__name" data-i18n="course.item.article2">Artigo: Nielsen, J. (1994) - Usability Inspection Methods</span>
                     <span class="activity-item__chevron" aria-hidden="true">→</span>
@@ -189,12 +172,12 @@
               <h3 id="topic-lesson3" class="course-topic__title" data-i18n="course.section.lesson3">Aula 3 — Avaliação de Usabilidade</h3>
               <ul class="course-topic__list">
                 <li>
-                  <span class="activity-item is-static">
+                  <a href="aula3.html" class="activity-item">
                     <span class="activity-item__icon activity-item__icon--page" aria-hidden="true">📄</span>
                     <span class="activity-item__name" data-i18n="course.item.slides3">Slides - Métodos de Avaliação de Usabilidade</span>
                     <span class="activity-item__meta">PDF</span>
-                    <span class="badge badge--new" data-i18n="badge.soon">Em breve</span>
-                  </span>
+                    <span class="activity-item__chevron" aria-hidden="true">→</span>
+                  </a>
                 </li>
               </ul>
             </article>
@@ -220,11 +203,12 @@
               </a>
             </li>
             <li>
-              <span class="activity-item is-static">
+              <a href="quiz.html" class="activity-item">
                 <span class="activity-item__icon activity-item__icon--quiz" aria-hidden="true">❓</span>
                 <span class="activity-item__name" data-i18n="course.item.quiz3">Quiz - Avaliação de Usabilidade</span>
                 <span class="badge badge--new" data-i18n="badge.new">Novo</span>
-              </span>
+                <span class="activity-item__chevron" aria-hidden="true">→</span>
+              </a>
             </li>
           </ul>
         </section>
@@ -238,10 +222,11 @@
 
           <ul class="course-topic__list course-topic__list--standalone">
             <li>
-              <span class="activity-item is-static">
+              <a href="forum.html" class="activity-item">
                 <span class="activity-item__icon activity-item__icon--forum" aria-hidden="true">💬</span>
                 <span class="activity-item__name" data-i18n="course.item.forum">Fórum de Dúvidas</span>
-              </span>
+                <span class="activity-item__chevron" aria-hidden="true">→</span>
+              </a>
             </li>
           </ul>
         </section>
@@ -258,6 +243,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="js/i18n.js"></script>
+  <script src="js/sidebar.js"></script>
   <script src="js/accessibility.js"></script>
   <script src="js/nav.js"></script>
 </body>

@@ -58,26 +58,8 @@
   <div class="page-body page-body--full">
 
     <!-- Sidebar -->
-    <aside class="sidebar" data-i18n-aria="nav.sidebar" aria-label="Navegação">
-      <nav class="sidebar__nav">
-        <a href="dashboard.html" class="sidebar__nav-item sidebar__nav-item--active">🏠 <span data-i18n="nav.home">Página inicial do site</span></a>
-
-        <a href="index.html" class="sidebar__nav-item">📋 <span data-i18n="index.courses.title">Minhas disciplinas</span></a>
-
-        <button class="sidebar__tree-toggle" data-target="tree-moodle" aria-expanded="true">
-          <span>📚 <span data-i18n="site.name">Moodle UFSC - Presencial</span></span>
-          <span class="arrow" aria-hidden="true">▶</span>
-        </button>
-        <div class="sidebar__subtree open" id="tree-moodle">
-          <button class="sidebar__tree-toggle" data-target="tree-mycourses" aria-expanded="true" style="padding-left:var(--space-lg);">
-            <span data-i18n="nav.mycourses">Meus cursos</span>
-            <span class="arrow" aria-hidden="true">▶</span>
-          </button>
-          <div class="sidebar__subtree open" id="tree-mycourses" style="padding-left:var(--space-lg);">
-            <a href="curso.html" class="sidebar__nav-item">CIT7213-05652 (20261)</a>
-          </div>
-        </div>
-      </nav>
+    <aside class="sidebar" data-sidebar="dashboard" data-i18n-aria="nav.sidebar" aria-label="Navegação">
+      <nav class="sidebar__nav"></nav>
     </aside>
 
     <!-- Conteúdo principal -->
@@ -90,7 +72,7 @@
           <button class="btn btn--secondary btn--sm" id="btn-customize" data-i18n="dashboard.customize">Personalizar esta página</button>
         </div>
 
-        <div class="card">
+        <div class="card" id="dashboard-period-card">
           <div class="card__header">📅 <span data-i18n="dashboard.period.title">Disciplinas/Turmas por período</span></div>
           <div class="card__body" style="padding: var(--space-md) var(--space-lg);">
 
@@ -112,14 +94,14 @@
       </div>
 
       <!-- Painel lateral direito -->
-      <aside class="aside-panel" data-i18n-aria="nav.support" aria-label="Links de suporte">
+      <aside class="aside-panel" id="dashboard-aside" data-i18n-aria="nav.support" aria-label="Links de suporte">
         <p class="aside-panel__title" data-i18n="dashboard.doubts">Dúvidas?</p>
         <ul class="aside-panel__list">
-          <li><button type="button" class="aside-link demo-link" data-i18n-key="dashboard.previous" data-i18n="dashboard.previous">Turmas anteriores</button></li>
-          <li><button type="button" class="aside-link demo-link" data-i18n-key="index.faq" data-i18n="index.faq">Perguntas Frequentes</button></li>
-          <li><button type="button" class="aside-link demo-link" data-i18n-key="index.support" data-i18n="index.support">Suporte a Usuários</button></li>
-          <li><button type="button" class="aside-link demo-link" data-i18n-key="index.policies" data-i18n="index.policies">Políticas de uso</button></li>
-          <li><button type="button" class="aside-link demo-link" data-i18n-key="index.deploy" data-i18n="index.deploy">Implantações de Moodle da UFSC</button></li>
+          <li><a href="info.html#turmas-anteriores" class="aside-link" data-i18n="dashboard.previous">Turmas anteriores</a></li>
+          <li><a href="info.html#faq" class="aside-link" data-i18n="index.faq">Perguntas Frequentes</a></li>
+          <li><a href="info.html#suporte" class="aside-link" data-i18n="index.support">Suporte a Usuários</a></li>
+          <li><a href="info.html#politicas" class="aside-link" data-i18n="index.policies">Políticas de uso</a></li>
+          <li><a href="info.html#implantacoes" class="aside-link" data-i18n="index.deploy">Implantações de Moodle da UFSC</a></li>
         </ul>
       </aside>
 
@@ -133,8 +115,27 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+  <div class="modal-overlay" id="modal-customize" role="dialog" aria-modal="true" aria-labelledby="customize-title">
+    <div class="modal">
+      <h2 class="modal__title" id="customize-title" data-i18n="dashboard.customize.title">Personalizar painel</h2>
+      <div class="modal__body">
+        <p data-i18n="dashboard.customize.body">Escolha quais blocos exibir no seu painel:</p>
+        <div class="form-group" style="margin-top:var(--space-md);">
+          <label class="quiz-option"><input type="checkbox" id="chk-period" checked> <span data-i18n="dashboard.period.title">Disciplinas/Turmas por período</span></label>
+          <label class="quiz-option"><input type="checkbox" id="chk-aside" checked> <span data-i18n="dashboard.doubts">Dúvidas?</span></label>
+        </div>
+      </div>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--secondary" id="customize-cancel" data-i18n="activity.modal.cancel">Cancelar</button>
+        <button type="button" class="btn btn--primary" id="customize-save" data-i18n="dashboard.customize.save">Salvar preferências</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/i18n.js"></script>
+  <script src="js/sidebar.js"></script>
   <script src="js/accessibility.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/pages.js"></script>
 </body>
 </html>

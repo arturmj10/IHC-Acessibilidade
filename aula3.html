@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-i18n-title="page.title.lesson3">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 3 - Avaliação de Usabilidade - Moodle UFSC</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-i18n="skip.link">Ir para o conteúdo principal</a>
+  <div class="a11y-bar" role="toolbar" data-i18n-aria="a11y.toolbar" aria-label="Opções de acessibilidade">
+    <span class="a11y-bar__label" data-i18n="a11y.label">Acessibilidade:</span>
+    <button class="a11y-btn" id="btn-contrast">⬛ <span data-i18n="a11y.contrast">Contraste</span></button>
+    <button class="a11y-btn" id="btn-font-size">A</button>
+    <button class="a11y-btn" id="btn-libras">🤟 <span data-i18n="a11y.libras">Libras</span></button>
+    <span class="a11y-bar__label" style="margin-left:var(--space-sm);" data-i18n="a11y.language">Idioma:</span>
+    <button class="a11y-btn lang-option" data-lang="pt-BR" aria-pressed="true">🇧🇷 PT</button>
+    <button class="a11y-btn lang-option" data-lang="en-US" aria-pressed="false">🇺🇸 EN</button>
+    <button class="a11y-btn lang-option" data-lang="es" aria-pressed="false">🇪🇸 ES</button>
+  </div>
+  <header class="topbar" role="banner">
+    <a class="topbar__logo-wrap" href="index.html"><span class="topbar__site-name" data-i18n="site.name">Moodle UFSC - Presencial</span></a>
+    <div class="topbar__spacer"></div>
+    <nav class="topbar__actions">
+      <a href="dashboard.html" class="topbar__nav-link" data-i18n="nav.panel">Painel</a>
+      <button class="topbar__icon-btn" id="btn-notifications">🔔</button>
+      <button class="topbar__icon-btn" id="btn-messages">💬</button>
+      <button class="topbar__user" id="btn-profile"><span>Develin Souza Goncalves</span></button>
+    </nav>
+  </header>
+  <nav class="breadcrumb-bar"><ol class="breadcrumb breadcrumb--full">
+    <li><a href="curso.html" data-i18n="course.welcome.name">Interface Humano-Computador</a></li><li class="breadcrumb__sep">/</li>
+    <li aria-current="page" data-i18n="course.section.lesson3">Aula 3 - Avaliação de Usabilidade</li>
+  </ol></nav>
+  <div class="page-body page-body--full">
+    <aside class="sidebar" data-sidebar="course" data-page="lesson3" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
+      <nav class="sidebar__nav"></nav>
+    </aside>
+    <main id="main-content" class="main-content main-content--course">
+      <h1 class="course-section__title" data-i18n="course.item.slides3">Slides - Métodos de Avaliação de Usabilidade</h1>
+      <div class="card"><div class="card__body card__body--flush">
+        <div class="slide-viewer">
+          <div class="slide-content">
+            <div class="slide" id="slide-1">
+              <div class="slide-header"><p>CIT7213</p><h2 data-i18n="course.section.lesson3">Avaliação de Usabilidade</h2></div>
+              <p class="slide-body" data-i18n="lesson3.slide1">Métodos para medir eficácia, eficiência e satisfação na interação com sistemas.</p>
+            </div>
+            <div class="slide" id="slide-2" hidden>
+              <div class="slide-body"><h2 data-i18n="lesson3.slide2.title">Principais métodos</h2>
+                <ul><li data-i18n="lesson3.m1">Teste de usabilidade com usuários</li><li data-i18n="lesson3.m2">Avaliação heurística</li><li data-i18n="lesson3.m3">Questionários (SUS, CSUQ)</li><li data-i18n="lesson3.m4">Análise de tarefas cognitivas</li></ul>
+                <a href="quiz.html" class="btn btn--primary" style="margin-top:var(--space-md);" data-i18n="course.item.quiz3">Fazer quiz da aula →</a>
+              </div>
+            </div>
+            <p id="slide-counter" class="slide-counter" aria-live="polite">1 / 2</p>
+          </div>
+          <div class="slide-controls" role="group" aria-label="Controles de slides">
+            <button class="btn btn--secondary" id="btn-prev" disabled data-i18n="content.slide.prev">← Anterior</button>
+            <div class="slide-dots">
+              <button class="slide-dot active" data-slide="1" aria-current="true" aria-label="Slide 1"></button>
+              <button class="slide-dot" data-slide="2" aria-label="Slide 2"></button>
+            </div>
+            <button class="btn btn--primary" id="btn-next" data-i18n="content.slide.next">Próximo →</button>
+          </div>
+        </div>
+      </div></div>
+      <nav class="content-nav">
+        <a href="aula2.html" class="btn btn--secondary" data-i18n="lesson3.prev">← Aula 2</a>
+        <a href="quiz.html" class="btn btn--primary" data-i18n="course.item.quiz3">Quiz →</a>
+      </nav>
+    </main>
+  </div>
+  <footer class="site-footer"><p data-i18n="site.footer">Universidade Federal de Santa Catarina — Moodle UFSC Presencial</p></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/slides.js"></script>
+  <script>initSlides(2);</script>
+  <script src="js/i18n.js"></script><script src="js/sidebar.js"></script><script src="js/accessibility.js"></script><script src="js/nav.js"></script>
+</body>
+</html>

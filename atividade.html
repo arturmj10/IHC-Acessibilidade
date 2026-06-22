@@ -64,27 +64,8 @@
   <div class="page-body">
 
     <!-- Sidebar -->
-    <aside class="sidebar" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
-      <nav class="sidebar__nav">
-        <a href="dashboard.html" class="sidebar__nav-item">🏠 <span data-i18n="nav.panel">Painel</span></a>
-
-        <button class="sidebar__tree-toggle open" data-target="tree-course" aria-expanded="true">
-          <span>📘 <span data-i18n="course.welcome.name">Interface Humano-Computador</span></span>
-          <span class="arrow" aria-hidden="true">▶</span>
-        </button>
-        <div class="sidebar__subtree open" id="tree-course">
-          <a href="curso.html" class="sidebar__nav-item" data-i18n="course.sidebar.home">Página inicial</a>
-
-          <div class="sidebar__section-title" data-i18n="nav.content">Conteúdo</div>
-          <a href="conteudo.html" class="sidebar__nav-item" data-i18n="course.section.lesson1">Aula 1 - Introdução à IHC</a>
-          <span class="sidebar__nav-item is-static" data-i18n="course.section.lesson2">Aula 2 - Heurísticas de Nielsen</span>
-          <span class="sidebar__nav-item is-static" data-i18n="course.section.lesson3">Aula 3 - Avaliação de Usabilidade</span>
-
-          <div class="sidebar__section-title" data-i18n="nav.activities">Atividades</div>
-          <a href="atividade.html" class="sidebar__nav-item sidebar__nav-item--active" data-i18n="course.item.work1">Trabalho 1 - Redesign</a>
-          <span class="sidebar__nav-item is-static" data-i18n="nav.forum">Fórum de Dúvidas</span>
-        </div>
-      </nav>
+    <aside class="sidebar" data-sidebar="course" data-page="work1" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
+      <nav class="sidebar__nav"></nav>
     </aside>
 
     <!-- Conteúdo principal -->
@@ -237,6 +218,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="js/i18n.js"></script>
+  <script src="js/sidebar.js"></script>
   <script>
     const titleInput = document.getElementById('submission-title');
     const fileList   = document.getElementById('file-list');

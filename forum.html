@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-i18n-title="page.title.forum">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fórum de Dúvidas - Moodle UFSC</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-i18n="skip.link">Ir para o conteúdo principal</a>
+  <div class="a11y-bar" role="toolbar" data-i18n-aria="a11y.toolbar" aria-label="Opções de acessibilidade">
+    <span class="a11y-bar__label" data-i18n="a11y.label">Acessibilidade:</span>
+    <button class="a11y-btn" id="btn-contrast">⬛ <span data-i18n="a11y.contrast">Contraste</span></button>
+    <button class="a11y-btn" id="btn-font-size">A</button>
+    <button class="a11y-btn" id="btn-libras">🤟 <span data-i18n="a11y.libras">Libras</span></button>
+    <span class="a11y-bar__label" style="margin-left:var(--space-sm);" data-i18n="a11y.language">Idioma:</span>
+    <button class="a11y-btn lang-option" data-lang="pt-BR" aria-pressed="true">🇧🇷 PT</button>
+    <button class="a11y-btn lang-option" data-lang="en-US" aria-pressed="false">🇺🇸 EN</button>
+    <button class="a11y-btn lang-option" data-lang="es" aria-pressed="false">🇪🇸 ES</button>
+  </div>
+  <header class="topbar" role="banner">
+    <a class="topbar__logo-wrap" href="index.html"><span class="topbar__site-name" data-i18n="site.name">Moodle UFSC - Presencial</span></a>
+    <div class="topbar__spacer"></div>
+    <nav class="topbar__actions">
+      <a href="dashboard.html" class="topbar__nav-link" data-i18n="nav.panel">Painel</a>
+      <button class="topbar__icon-btn" id="btn-notifications">🔔</button>
+      <button class="topbar__icon-btn" id="btn-messages">💬</button>
+      <button class="topbar__user" id="btn-profile"><span>Develin Souza Goncalves</span></button>
+    </nav>
+  </header>
+  <nav class="breadcrumb-bar"><ol class="breadcrumb breadcrumb--full">
+    <li><a href="curso.html" data-i18n="course.welcome.name">Interface Humano-Computador</a></li><li class="breadcrumb__sep">/</li>
+    <li aria-current="page" data-i18n="nav.forum">Fórum de Dúvidas</li>
+  </ol></nav>
+  <div class="page-body page-body--full">
+    <aside class="sidebar" data-sidebar="course" data-page="forum" data-i18n-aria="nav.course.nav" aria-label="Navegação do curso">
+      <nav class="sidebar__nav"></nav>
+    </aside>
+    <main id="main-content" class="main-content main-content--course">
+      <h1 class="course-section__title">💬 <span data-i18n="nav.forum">Fórum de Dúvidas</span></h1>
+      <ul id="forum-list" class="forum-list">
+        <li class="forum-thread">
+          <details>
+            <summary class="forum-thread__summary">
+              <span class="forum-thread__subject" data-i18n="forum.thread1.title">Bem-vindos(as) à disciplina!</span>
+              <span class="forum-thread__meta">Prof. IHC · 02 jun. 2026</span>
+            </summary>
+            <div class="forum-thread__body" data-i18n="forum.thread1.body">Sejam bem-vindos(as)! Use este fórum para dúvidas sobre aulas, atividades e prazos.</div>
+          </details>
+        </li>
+        <li class="forum-thread">
+          <details>
+            <summary class="forum-thread__summary">
+              <span class="forum-thread__subject" data-i18n="forum.thread2.title">Dúvida sobre o Trabalho 1</span>
+              <span class="forum-thread__meta">Maria Silva · 12 jun. 2026</span>
+            </summary>
+            <div class="forum-thread__body" data-i18n="forum.thread2.body">Posso entregar o trabalho em dupla? — Sim, grupos de até 3 pessoas são permitidos.</div>
+          </details>
+        </li>
+      </ul>
+      <div class="card" style="margin-top:var(--space-lg);">
+        <div class="card__header" data-i18n="forum.new.title">Nova publicação</div>
+        <div class="card__body">
+          <form id="forum-form">
+            <div class="form-group">
+              <label for="forum-subject" data-i18n="forum.new.subject">Assunto</label>
+              <input type="text" id="forum-subject" required data-i18n-placeholder="forum.new.subject.placeholder" placeholder="Digite o assunto da sua dúvida">
+            </div>
+            <div class="form-group">
+              <label for="forum-body" data-i18n="forum.new.body">Mensagem</label>
+              <textarea id="forum-body" required data-i18n-placeholder="forum.new.body.placeholder" placeholder="Escreva sua mensagem..."></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" data-i18n="forum.new.submit">Publicar no fórum</button>
+          </form>
+        </div>
+      </div>
+      <a href="curso.html" class="btn btn--secondary" style="margin-top:var(--space-lg);" data-i18n="content.back">← Voltar ao curso</a>
+    </main>
+  </div>
+  <footer class="site-footer"><p data-i18n="site.footer">Universidade Federal de Santa Catarina — Moodle UFSC Presencial</p></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/i18n.js"></script><script src="js/sidebar.js"></script><script src="js/accessibility.js"></script><script src="js/nav.js"></script><script src="js/pages.js"></script>
+</body>
+</html>

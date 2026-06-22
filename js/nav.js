@@ -3,20 +3,19 @@
  * Navegação, sidebar toggle e comportamentos comuns de UI.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-
-  // --- Sidebar: expandir/recolher subárvores ---
+function initSidebarTrees() {
   document.querySelectorAll('.sidebar__tree-toggle').forEach(btn => {
+    if (btn.dataset.treeBound) return;
+    btn.dataset.treeBound = '1';
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
       const subtree = document.getElementById(targetId);
       if (!subtree) return;
       const isOpen = subtree.classList.toggle('open');
       btn.classList.toggle('open', isOpen);
-      btn.setAttribute('aria-expanded', isOpen);
+      btn.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // restaurar estado aberto ao carregar
     const targetId = btn.getAttribute('data-target');
     const subtree = document.getElementById(targetId);
     if (subtree && subtree.classList.contains('open')) {
@@ -24,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.setAttribute('aria-expanded', 'true');
     }
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  initSidebarTrees();
 
   // --- Acessibilidade de modais: foco, focus-trap, Esc e restauração de foco ---
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
@@ -175,14 +179,14 @@ document.addEventListener('DOMContentLoaded', () => {
     headerKey: 'nav.notifications',
     items: [
       { href: 'atividade.html', titleKey: 'notif.assignment', metaKey: 'notif.assignment.meta' },
-      { href: 'curso.html',     titleKey: 'notif.quiz',       metaKey: 'notif.quiz.meta' },
+      { href: 'quiz.html',      titleKey: 'notif.quiz',       metaKey: 'notif.quiz.meta' },
     ],
   }));
 
   attachDropdown(document.getElementById('btn-messages'), makeDropdown({
     headerKey: 'nav.messages',
     items: [
-      { href: 'curso.html', titleKey: 'msg.professor', metaKey: 'msg.professor.preview' },
+      { href: 'forum.html', titleKey: 'msg.professor', metaKey: 'msg.professor.preview' },
     ],
   }));
 
@@ -207,17 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
     closeAllDropdowns();
     const b = wrap && wrap.querySelector('[aria-haspopup]');
     if (b) b.focus();
-  });
-
-  // --- Links de demonstração (FAQ, suporte, etc.) ---
-  document.querySelectorAll('.demo-link').forEach(el => {
-    el.addEventListener('click', e => {
-      e.preventDefault();
-      const key = el.getAttribute('data-i18n-key');
-      const label = key ? tt(key) : el.textContent.trim();
-      const msg = label + ' — ' + tt('link.demo');
-      if (typeof A11y !== 'undefined') A11y.showToast(msg, 'info');
-    });
   });
 
   // --- Sub-navegação do curso: destaque da seção ativa ---
@@ -247,13 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- Botão "Personalizar esta página" (demonstração) ---
-  const customizeBtn = document.getElementById('btn-customize');
-  if (customizeBtn) {
-    customizeBtn.addEventListener('click', () => {
-      if (typeof A11y !== 'undefined') A11y.showToast(tt('dashboard.customize.toast'), 'success');
-    });
-  }
+  // --- Personalização do painel (modal em pages.js) ---
 
   // --- Drag-and-drop na área de upload ---
   const fileDrop = document.querySelector('.file-drop');
