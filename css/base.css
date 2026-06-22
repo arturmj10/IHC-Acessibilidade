@@ -153,6 +153,18 @@
   border-radius: var(--radius-sm);
 }
 
+/* --- Clique assistido (acessibilidade motora) --- */
+/* Realce do alvo clicável mais próximo do cursor (ideia do "bubble cursor").
+   Usa accent (vermelho) + um anel branco fino de separação, para ficar
+   visível em qualquer fundo — inclusive na topbar escura, cujo fundo é igual
+   a --color-primary. Só adiciona outline/box-shadow: não mexe no layout. */
+.a11y-target-focus {
+  outline: 3px solid var(--color-accent) !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff !important;
+  border-radius: var(--radius-sm);
+}
+
 /* --- Botão "Modo acessibilidade" em destaque --- */
 .a11y-btn--mode {
   font-weight: 700;

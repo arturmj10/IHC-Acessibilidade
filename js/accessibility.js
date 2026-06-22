@@ -374,6 +374,196 @@ const A11y = (() => {
     setReadAloud(!readAloudOn, true);
   }
 
+  // ─── Clique assistido (acessibilidade motora) ───────────────────────────────
+  // Em vez de MOVER os alvos (o que atrapalha quem treme), os alvos ficam
+  // PARADOS e o sistema facilita o acerto:
+  //   • realça o alvo clicável mais próximo quando há um vencedor claro;
+  //   • ESTABILIZA o clique: o alvo é fixado quando você APERTA o mouse, então,
+  //     se a mão escorregar até soltar, o clique ainda vai para esse alvo;
+  //   • redireciona cliques que caem por perto de um alvo (snap);
+  //   • ignora o duplo-clique acidental (debounce).
+  // Critérios conservadores para NÃO sequestrar cliques deliberados (campos de
+  // texto, outros botões) nem chutar o vizinho errado quando há botões colados.
+
+  let clickAssistOn = false;
+
+  const ASSIST_RADIUS    = 50;  // alcance do "puxão" além da borda do alvo (px)
+  const AMBIGUITY_MARGIN = 12;  // 2º alvo quase tão perto quanto o 1º → não snapa
+  const DOUBLE_MS        = 250; // janela p/ ignorar duplo-clique acidental
+  const SLIP_TOLERANCE   = 80;  // escorregão máx. entre apertar e soltar p/ compensar (px)
+
+  // Alvos onde um .click() faz sentido
+  const CLICKABLE =
+    'a[href], button:not([disabled]), [role="button"], summary,' +
+    ' .activity-item, .sidebar__nav-item, .lang-option,' +
+    ' input[type="submit"], input[type="button"], input[type="checkbox"],' +
+    ' input[type="radio"], label[for]';
+  // Qualquer coisa interativa — para detectar acerto direto e NÃO sequestrar
+  // cliques deliberados (ex.: campos de texto, selects).
+  const INTERACTIVE = CLICKABLE +
+    ', input, select, textarea, label, [tabindex]:not([tabindex="-1"])';
+
+  let assistRaf    = null;
+  let assistTarget = null;  // alvo realçado no momento
+  const aMouse     = { x: -9999, y: -9999, valid: false };
+  let redirecting  = false; // evita reprocessar cliques sintéticos
+  let lastClickEl  = null;
+  let lastClickAt  = 0;
+  let pressTarget  = null;  // alvo pretendido capturado no mousedown
+  let pressX       = 0;
+  let pressY       = 0;
+
+  // Distância do ponto até o retângulo (0 se estiver dentro)
+  function distToRect(x, y, r) {
+    const dx = Math.max(r.left - x, 0, x - r.right);
+    const dy = Math.max(r.top - y, 0, y - r.bottom);
+    return Math.hypot(dx, dy);
+  }
+
+  // Alvo clicável mais próximo do ponto, DESDE QUE haja um vencedor claro.
+  // Devolve null se nada está dentro do raio ou se dois alvos disputam o ponto
+  // (evita chutar o vizinho errado quando os botões estão colados).
+  function nearestClickable(x, y) {
+    let best = null, d1 = Infinity, d2 = Infinity, bestArea = Infinity;
+    document.querySelectorAll(CLICKABLE).forEach(el => {
+      if (el.disabled) return;
+      const r = el.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const d = distToRect(x, y, r);
+      if (d > ASSIST_RADIUS) return;
+      const area = r.width * r.height;
+      if (d < d1 || (d === d1 && area < bestArea)) {
+        d2 = d1; best = el; d1 = d; bestArea = area;
+      } else if (d < d2) {
+        d2 = d;
+      }
+    });
+    if (!best) return null;
+    // Fora de qualquer alvo e com um vizinho quase tão perto → ambíguo, não snapa
+    if (d1 > 0 && (d2 - d1) < AMBIGUITY_MARGIN) return null;
+    return best;
+  }
+
+  function setAssistTarget(el) {
+    if (el === assistTarget) return;
+    if (assistTarget) assistTarget.classList.remove('a11y-target-focus');
+    assistTarget = el;
+    if (el) el.classList.add('a11y-target-focus');
+  }
+
+  // ── Rastreio do ponteiro (para o realce do alvo) ──
+
+  function onAssistMove(e) {
+    aMouse.x = e.clientX; aMouse.y = e.clientY; aMouse.valid = true;
+    scheduleAssist();
+  }
+  function onAssistLeave() {
+    aMouse.valid = false;
+    scheduleAssist();
+  }
+  function scheduleAssist() {
+    if (assistRaf || !clickAssistOn) return;
+    assistRaf = requestAnimationFrame(runAssist);
+  }
+  function runAssist() {
+    assistRaf = null;
+    if (!clickAssistOn) { setAssistTarget(null); return; }
+    setAssistTarget(aMouse.valid ? nearestClickable(aMouse.x, aMouse.y) : null);
+  }
+
+  // ── Snap do clique + debounce ──
+
+  function performClick(el) {
+    redirecting = true;
+    try { el.click(); } finally { redirecting = false; }
+  }
+
+  // Fixa o alvo pretendido no instante em que o botão é pressionado.
+  function onAssistDown(e) {
+    if (!clickAssistOn || e.button !== 0) { pressTarget = null; return; }
+    const direct = e.target.closest ? e.target.closest(CLICKABLE) : null;
+    pressTarget = direct || nearestClickable(e.clientX, e.clientY);
+    pressX = e.clientX; pressY = e.clientY;
+  }
+
+  function debounceAndClick(el, e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const now = Date.now();
+    if (el === lastClickEl && now - lastClickAt < DOUBLE_MS) return;
+    lastClickEl = el; lastClickAt = now;
+    performClick(el);
+  }
+
+  function onAssistClick(e) {
+    if (!clickAssistOn || redirecting) return;
+
+    const landed      = e.target.closest ? e.target.closest(CLICKABLE)   : null;
+    const interactive = e.target.closest ? e.target.closest(INTERACTIVE) : null;
+
+    // 1) Estabilização: apertou sobre/perto de um alvo e a mão escorregou ao
+    //    soltar → o clique vai para o alvo do mousedown. Só compensa escorregões
+    //    pequenos que "caem" fora de qualquer controle (não rouba cliques
+    //    deliberados em campos de texto ou em outro botão).
+    const intended = pressTarget;
+    pressTarget = null;
+    if (intended && landed !== intended) {
+      const slip = Math.hypot(e.clientX - pressX, e.clientY - pressY);
+      const fellThrough = !interactive || (interactive.contains && interactive.contains(intended));
+      if (slip <= SLIP_TOLERANCE && fellThrough) {
+        debounceAndClick(intended, e);
+        return;
+      }
+    }
+
+    // 2) Acerto direto num alvo clicável: deixa seguir, mas barra duplo-clique
+    if (landed) {
+      const now = Date.now();
+      if (landed === lastClickEl && now - lastClickAt < DOUBLE_MS) {
+        e.preventDefault(); e.stopPropagation();
+        return;
+      }
+      lastClickEl = landed; lastClickAt = now;
+      return;
+    }
+
+    // 3) Clique deliberado em outro interativo (campo de texto, select): não mexe
+    if (interactive) return;
+
+    // 4) Caiu fora de tudo, mas perto de um alvo claro → snap por proximidade
+    const el = nearestClickable(e.clientX, e.clientY);
+    if (!el) return; // longe de tudo ou ambíguo → não interfere
+    debounceAndClick(el, e);
+  }
+
+  function setClickAssist(on, announce) {
+    clickAssistOn = on;
+    updateBtn('btn-click-assist', on);
+    const btn = document.getElementById('btn-click-assist');
+    if (btn) btn.setAttribute('aria-pressed', String(on));
+    if (on) {
+      document.addEventListener('mousedown', onAssistDown, true);
+      document.addEventListener('click', onAssistClick, true);
+      document.addEventListener('mousemove', onAssistMove);
+      document.addEventListener('mouseleave', onAssistLeave);
+      window.addEventListener('scroll', scheduleAssist, { passive: true });
+      localStorage.setItem('a11y-click-assist', '1');
+      if (announce) showToast(I18n.t('a11y.toast.clickassist.on'), 'info');
+    } else {
+      document.removeEventListener('mousedown', onAssistDown, true);
+      document.removeEventListener('click', onAssistClick, true);
+      document.removeEventListener('mousemove', onAssistMove);
+      document.removeEventListener('mouseleave', onAssistLeave);
+      window.removeEventListener('scroll', scheduleAssist);
+      aMouse.valid = false;
+      pressTarget = null;
+      setAssistTarget(null);
+      localStorage.removeItem('a11y-click-assist');
+      if (announce) showToast(I18n.t('a11y.toast.clickassist.off'), '');
+    }
+  }
+  function toggleClickAssist() { setClickAssist(!clickAssistOn, true); }
+
   // ─── Modo acessibilidade (pacote) ────────────────────────────────────────────
 
   let a11yModeOn = false;
@@ -438,13 +628,14 @@ const A11y = (() => {
 
     const contrast  = document.getElementById('btn-contrast');
     const fontSize  = document.getElementById('btn-font-size');
-    const libras    = document.getElementById('btn-libras');
-    const mode      = document.getElementById('btn-a11y-mode');
-    const readAloud = document.getElementById('btn-read-aloud');
-    const langBtns  = bar.querySelectorAll('.lang-option');
+    const libras      = document.getElementById('btn-libras');
+    const mode        = document.getElementById('btn-a11y-mode');
+    const readAloud   = document.getElementById('btn-read-aloud');
+    const clickAssist = document.getElementById('btn-click-assist');
+    const langBtns    = bar.querySelectorAll('.lang-option');
 
     const toolsGroup = makeGroup('a11y.label');
-    [mode, readAloud, contrast, fontSize, libras].forEach(btn => {
+    [mode, readAloud, clickAssist, contrast, fontSize, libras].forEach(btn => {
       if (btn) toolsGroup.appendChild(btn);
     });
 
@@ -486,6 +677,16 @@ const A11y = (() => {
       bar.insertBefore(read, mode.nextSibling);
     }
 
+    const clickAssist = document.createElement('button');
+    clickAssist.className = 'a11y-btn';
+    clickAssist.id = 'btn-click-assist';
+    clickAssist.setAttribute('aria-pressed', 'false');
+    clickAssist.innerHTML = '🎯 <span data-i18n="a11y.clickassist"></span>';
+    clickAssist.querySelector('span').textContent = I18n.t('a11y.clickassist');
+    clickAssist.title = I18n.t('a11y.clickassist');
+    clickAssist.addEventListener('click', toggleClickAssist);
+    bar.appendChild(clickAssist);
+
     organizeA11yBar();
   }
 
@@ -511,6 +712,9 @@ const A11y = (() => {
       setA11yMode(true, true);
     } else if (localStorage.getItem('a11y-read') === '1') {
       setReadAloud(true, false);
+    }
+    if (localStorage.getItem('a11y-click-assist') === '1') {
+      setClickAssist(true, false);
     }
   }
 
