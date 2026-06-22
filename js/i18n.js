@@ -101,6 +101,7 @@ const I18n = (() => {
       'index.courses.panel':   'Ver painel completo →',
       'index.courses.period':  '2026 — 1º semestre',
       'index.courses.enter':   'Entrar na disciplina',
+      'index.semester.label':  'Semestre:',
       'index.info.title':      'Informações institucionais',
 
       'dashboard.greeting':    'Olá, Develin Souza Goncalves! 👋',
@@ -390,6 +391,7 @@ const I18n = (() => {
       'index.courses.panel':   'View full dashboard →',
       'index.courses.period':  '2026 — 1st semester',
       'index.courses.enter':   'Enter course',
+      'index.semester.label':  'Semester:',
       'index.info.title':      'Institutional information',
 
       'dashboard.greeting':    'Hello, Develin Souza Goncalves! 👋',
@@ -693,6 +695,7 @@ const I18n = (() => {
       'index.courses.panel':   'Ver panel completo →',
       'index.courses.period':  '2026 — 1er semestre',
       'index.courses.enter':   'Entrar en la asignatura',
+      'index.semester.label':  'Semestre:',
       'index.info.title':      'Información institucional',
 
       'dashboard.greeting':    '¡Hola, Develin Souza Goncalves! 👋',

@@ -35,7 +35,7 @@
     </a>
     <div class="topbar__spacer"></div>
     <nav class="topbar__actions" data-i18n-aria="nav.user.actions" aria-label="Ações do usuário">
-      <a href="dashboard.html" class="topbar__nav-link" data-i18n="nav.panel">Painel</a>
+      <a href="index.html" class="topbar__nav-link" data-i18n="nav.panel">Painel</a>
       <button class="topbar__icon-btn" id="btn-notifications" data-i18n-aria="nav.notifications" aria-label="Notificações (1 nova)">
         🔔<span class="topbar__badge" aria-hidden="true">1</span>
       </button>
@@ -48,15 +48,6 @@
       </button>
     </nav>
   </header>
-
-  <!-- Breadcrumb -->
-  <nav class="breadcrumb-bar" data-i18n-aria="nav.breadcrumb" aria-label="Localização na página">
-    <ol class="breadcrumb">
-      <li><a href="dashboard.html" data-i18n="nav.panel">Painel</a></li>
-      <li class="breadcrumb__sep" aria-hidden="true">/</li>
-      <li aria-current="page" data-i18n="index.courses.title">Minhas disciplinas</li>
-    </ol>
-  </nav>
 
   <!-- Cabeçalho da página -->
   <div class="page-header" role="region" aria-label="Título da página">
@@ -75,10 +66,13 @@
           <h2 id="index-courses-heading" class="index-primary__title" data-i18n="index.courses.title">Minhas disciplinas</h2>
           <p class="index-primary__hint" data-i18n="index.courses.subtitle">Acesse suas turmas do semestre atual</p>
         </div>
-        <a href="dashboard.html" class="btn btn--secondary" data-i18n="index.courses.panel">Ver painel completo →</a>
+        <div class="index-semester">
+          <label for="semester-select" class="index-semester__label" data-i18n="index.semester.label">Semestre:</label>
+          <select id="semester-select" class="index-semester__select" data-i18n-aria="index.semester.label">
+            <option value="2026.1" selected>2026.1</option>
+          </select>
+        </div>
       </div>
-
-      <p class="index-period-label" data-i18n="index.courses.period">2026 — 1º semestre</p>
 
       <ul class="index-course-grid">
         <li>

@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     attachDropdown(profileBtn, makeDropdown({
       headerText: nameEl ? nameEl.textContent : 'Perfil',
       items: [
-        { href: 'dashboard.html', titleKey: 'profile.view' },
+        { href: 'index.html', titleKey: 'profile.view' },
         { href: 'index.html',     titleKey: 'profile.logout' },
       ],
     }));

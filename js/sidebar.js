@@ -42,8 +42,7 @@ const Sidebars = (() => {
     if (!nav) return;
 
     nav.innerHTML = `
-      ${linkItem({ id: 'panel', href: 'dashboard.html', i18n: 'nav.panel', icon: '🏠' })}
-      ${linkItem({ id: 'courses-index', href: 'index.html', i18n: 'index.courses.title', icon: '📋' })}
+      ${linkItem({ id: 'panel', href: 'index.html', i18n: 'nav.panel', icon: '🏠' })}
       ${sectionTitle('course.sidebar.current')}
       <button type="button" class="sidebar__tree-toggle open" data-target="tree-course" aria-expanded="true">
         <span>📘 <span data-i18n="course.welcome.name">${tt('course.welcome.name')}</span></span>
@@ -78,10 +77,9 @@ const Sidebars = (() => {
     if (!nav) return;
 
     nav.innerHTML = `
-      <a href="dashboard.html" class="sidebar__nav-item sidebar__nav-item--active" data-nav-id="dashboard-home">
+      <a href="index.html" class="sidebar__nav-item sidebar__nav-item--active" data-nav-id="dashboard-home">
         🏠 <span data-i18n="nav.panel">${tt('nav.panel')}</span>
       </a>
-      ${linkItem({ id: 'courses-index', href: 'index.html', i18n: 'index.courses.title', icon: '📋' })}
       <button type="button" class="sidebar__tree-toggle open" data-target="tree-moodle" aria-expanded="true">
         <span>📚 <span data-i18n="site.name">${tt('site.name')}</span></span>
         <span class="arrow" aria-hidden="true">▶</span>
